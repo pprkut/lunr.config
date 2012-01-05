@@ -9,11 +9,12 @@
             colors="true">
     <testsuites>
         <testsuite name="Lunr Testsuite">
-            <filter>
-                <whitelist>
-                    <directory suffix=".php">system</directory>
-                </whitelist>
-            </filter>
+            <file>tests/system/libraries/core/class.configuration.base.test.php</file>
+            <file>tests/system/libraries/core/class.configuration.convertarraytoclass.test.php</file>
+            <file>tests/system/libraries/core/class.configuration.nonarrayconstructor.test.php</file>
+            <file>tests/system/libraries/core/class.configuration.arrayconstructor.test.php</file>
+            <file>tests/system/libraries/core/class.configuration.arrayaccess.test.php</file>
+            <file>tests/system/libraries/core/class.configuration.loadfile.test.php</file>
         </testsuite>
     </testsuites>
     <filter>
