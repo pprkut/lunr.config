@@ -9,19 +9,21 @@
             colors="true">
     <testsuites>
         <testsuite name="Lunr Testsuite">
-            <file>tests/system/libraries/core/class.configuration.base.test.php</file>
-            <file>tests/system/libraries/core/class.configuration.convertarraytoclass.test.php</file>
-            <file>tests/system/libraries/core/class.configuration.nonarrayconstructor.test.php</file>
-            <file>tests/system/libraries/core/class.configuration.arrayconstructor.test.php</file>
-            <file>tests/system/libraries/core/class.configuration.arrayaccess.test.php</file>
-            <file>tests/system/libraries/core/class.configuration.loadfile.test.php</file>
-            <file>tests/system/libraries/core/class.configuration.arrayusage.test.php</file>
+            <file>src/Lunr/Core/Tests/ConfigurationBaseTest.php</file>
+            <file>src/Lunr/Core/Tests/ConfigurationConvertArrayToClassTest.php</file>
+            <file>src/Lunr/Core/Tests/ConfigurationNonArrayConstructorTest.php</file>
+            <file>src/Lunr/Core/Tests/ConfigurationArrayConstructorTest.php</file>
+            <file>src/Lunr/Core/Tests/ConfigurationArrayAccessTest.php</file>
+            <file>src/Lunr/Core/Tests/ConfigurationLoadFileTest.php</file>
+            <file>src/Lunr/Core/Tests/ConfigurationArrayUsageTest.php</file>
         </testsuite>
     </testsuites>
     <filter>
         <whitelist>
-            <directory>../system/libraries/</directory>
-            <directory>../system/models/</directory>
+            <directory>../src/</directory>
+            <exclude>
+                <directory>../src/Lunr/Core/Tests/</directory>
+            </exclude>
         </whitelist>
     </filter>
     <logging>

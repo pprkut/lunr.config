@@ -13,7 +13,9 @@
  * @license    http://lunr.nl/LICENSE MIT License
  */
 
-namespace Lunr\Libraries\Core;
+namespace Lunr\Core\Tests;
+
+use Lunr\Core\Configuration;
 
 /**
  * This tests the Configuration class when providing an
@@ -23,8 +25,8 @@ namespace Lunr\Libraries\Core;
  * @package    Core
  * @subpackage Tests
  * @author     Heinz Wiesinger <heinz@m2mobi.com>
- * @depends    Lunr\Libraries\Core\ConfigurationConvertArrayToClassTest::testConvertArrayToClassWithMultidimensionalArrayValue
- * @covers     Lunr\Libraries\Core\Configuration
+ * @depends    Lunr\Core\Tests\ConfigurationConvertArrayToClassTest::testConvertArrayToClassWithMultidimensionalArrayValue
+ * @covers     Lunr\Core\Configuration
  */
 class ConfigurationArrayConstructorTest extends ConfigurationTest
 {
@@ -77,13 +79,13 @@ class ConfigurationArrayConstructorTest extends ConfigurationTest
         $output = $property->getValue($this->configuration);
 
         $this->assertEquals($this->config['test1'], $output['test1']);
-        $this->assertInstanceOf('Lunr\Libraries\Core\Configuration', $output['test2']);
+        $this->assertInstanceOf('Lunr\Core\Configuration', $output['test2']);
     }
 
     /**
      * Test conversion to array when $config is not empty.
      *
-     * @covers  Lunr\Libraries\Core\Configuration::toArray
+     * @covers  Lunr\Core\Configuration::toArray
      */
     public function testToArrayEqualsInput()
     {
@@ -105,7 +107,7 @@ class ConfigurationArrayConstructorTest extends ConfigurationTest
      * Test that current() initially points to the first element.
      *
      * @depends testConfig
-     * @covers  Lunr\Libraries\Core\Configuration::current
+     * @covers  Lunr\Core\Configuration::current
      */
     public function testCurrentIsFirstElement()
     {
@@ -116,7 +118,7 @@ class ConfigurationArrayConstructorTest extends ConfigurationTest
      * Test that key() initially points to the first element.
      *
      * @depends testConfig
-     * @covers  Lunr\Libraries\Core\Configuration::key
+     * @covers  Lunr\Core\Configuration::key
      */
     public function testKeyIsFirstElement()
     {
@@ -128,7 +130,7 @@ class ConfigurationArrayConstructorTest extends ConfigurationTest
      *
      * @depends testConfig
      * @depends testPositionIsZero
-     * @covers  Lunr\Libraries\Core\Configuration::current
+     * @covers  Lunr\Core\Configuration::current
      */
     public function testCurrentDoesNotAdvancePointer()
     {
@@ -146,7 +148,7 @@ class ConfigurationArrayConstructorTest extends ConfigurationTest
      *
      * @depends testConfig
      * @depends testPositionIsZero
-     * @covers  Lunr\Libraries\Core\Configuration::key
+     * @covers  Lunr\Core\Configuration::key
      */
     public function testKeyDoesNotAdvancePointer()
     {
@@ -164,8 +166,8 @@ class ConfigurationArrayConstructorTest extends ConfigurationTest
      *
      * @depends testConfig
      * @depends testPositionIsZero
-     * @depends Lunr\Libraries\Core\ConfigurationBaseTest::testNextIncreasesPosition
-     * @covers  Lunr\Libraries\Core\Configuration::next
+     * @depends Lunr\Core\Tests\ConfigurationBaseTest::testNextIncreasesPosition
+     * @covers  Lunr\Core\Configuration::next
      */
     public function testNextAdvancesPointer()
     {
@@ -183,7 +185,7 @@ class ConfigurationArrayConstructorTest extends ConfigurationTest
      *
      * @depends testConfig
      * @depends testNextAdvancesPointer
-     * @covers  Lunr\Libraries\Core\Configuration::key
+     * @covers  Lunr\Core\Configuration::key
      */
     public function testKeyIsSecondElementAfterNext()
     {
@@ -196,7 +198,7 @@ class ConfigurationArrayConstructorTest extends ConfigurationTest
      *
      * @depends testConfig
      * @depends testNextAdvancesPointer
-     * @covers  Lunr\Libraries\Core\Configuration::valid
+     * @covers  Lunr\Core\Configuration::valid
      */
     public function testValidIsTrueForExistingElement()
     {
@@ -208,7 +210,7 @@ class ConfigurationArrayConstructorTest extends ConfigurationTest
      *
      * @depends testConfig
      * @depends testNextAdvancesPointer
-     * @covers  Lunr\Libraries\Core\Configuration::valid
+     * @covers  Lunr\Core\Configuration::valid
      */
     public function testValidIsTrueWhenElementValueIsFalse()
     {
@@ -226,7 +228,7 @@ class ConfigurationArrayConstructorTest extends ConfigurationTest
      *
      * @depends testConfig
      * @depends testNextAdvancesPointer
-     * @covers  Lunr\Libraries\Core\Configuration::valid
+     * @covers  Lunr\Core\Configuration::valid
      */
     public function testValidIsFalseOnNonExistingElement()
     {
@@ -240,7 +242,7 @@ class ConfigurationArrayConstructorTest extends ConfigurationTest
      * Test that rewind() rewinds the position counter to zero.
      *
      * @depends testNextAdvancesPointer
-     * @covers  Lunr\Libraries\Core\Configuration::rewind
+     * @covers  Lunr\Core\Configuration::rewind
      */
     public function testRewindRewindsPosition()
     {
@@ -260,7 +262,7 @@ class ConfigurationArrayConstructorTest extends ConfigurationTest
      * Test that rewind() rewinds the position counter to zero.
      *
      * @depends testNextAdvancesPointer
-     * @covers  Lunr\Libraries\Core\Configuration::rewind
+     * @covers  Lunr\Core\Configuration::rewind
      */
     public function testRewindRewindsPointer()
     {

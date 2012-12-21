@@ -14,7 +14,9 @@
  * @license    http://lunr.nl/LICENSE MIT License
  */
 
-namespace Lunr\Libraries\Core;
+namespace Lunr\Core\Tests;
+
+use Lunr\Core\Configuration;
 
 /**
  * Test for the method convert_array_to_class().
@@ -23,7 +25,7 @@ namespace Lunr\Libraries\Core;
  * @package    Core
  * @subpackage Tests
  * @author     Heinz Wiesinger <heinz@m2mobi.com>
- * @covers     Lunr\Libraries\Core\Configuration
+ * @covers     Lunr\Core\Configuration
  */
 class ConfigurationConvertArrayToClassTest extends ConfigurationTest
 {
@@ -42,7 +44,7 @@ class ConfigurationConvertArrayToClassTest extends ConfigurationTest
      * @param mixed $input Various invalid values
      *
      * @dataProvider nonArrayValueProvider
-     * @covers       Lunr\Libraries\Core\Configuration::convert_array_to_class
+     * @covers       Lunr\Core\Configuration::convert_array_to_class
      */
     public function testConvertArrayToClassWithNonArrayValues($input)
     {
@@ -54,7 +56,7 @@ class ConfigurationConvertArrayToClassTest extends ConfigurationTest
     /**
      * Test convert_array_to_class() with an empty array as input.
      *
-     * @covers Lunr\Libraries\Core\Configuration::convert_array_to_class
+     * @covers Lunr\Core\Configuration::convert_array_to_class
      */
     public function testConvertArrayToClassWithEmptyArrayValue()
     {
@@ -62,7 +64,7 @@ class ConfigurationConvertArrayToClassTest extends ConfigurationTest
         $method->setAccessible(TRUE);
         $output = $method->invokeArgs($this->configuration, array(array()));
 
-        $this->assertInstanceOf('Lunr\Libraries\Core\Configuration', $output);
+        $this->assertInstanceOf('Lunr\Core\Configuration', $output);
 
         $property = $this->configuration_reflection->getProperty('size');
         $property->setAccessible(TRUE);
@@ -78,7 +80,7 @@ class ConfigurationConvertArrayToClassTest extends ConfigurationTest
     /**
      * Test convert_array_to_class() with an array as input.
      *
-     * @covers Lunr\Libraries\Core\Configuration::convert_array_to_class
+     * @covers Lunr\Core\Configuration::convert_array_to_class
      */
     public function testConvertArrayToClassWithArrayValue()
     {
@@ -97,7 +99,7 @@ class ConfigurationConvertArrayToClassTest extends ConfigurationTest
      * Test convert_array_to_class() with a multi-dimensional array as input.
      *
      * @depends testConvertArrayToClassWithArrayValue
-     * @covers  Lunr\Libraries\Core\Configuration::convert_array_to_class
+     * @covers  Lunr\Core\Configuration::convert_array_to_class
      */
     public function testConvertArrayToClassWithMultidimensionalArrayValue()
     {
@@ -113,7 +115,7 @@ class ConfigurationConvertArrayToClassTest extends ConfigurationTest
 
         $this->assertTrue(is_array($output));
 
-        $this->assertInstanceOf('Lunr\Libraries\Core\Configuration', $output['test2']);
+        $this->assertInstanceOf('Lunr\Core\Configuration', $output['test2']);
 
         $property = $this->configuration_reflection->getProperty('size');
         $property->setAccessible(TRUE);

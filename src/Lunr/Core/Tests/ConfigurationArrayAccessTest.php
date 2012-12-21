@@ -13,7 +13,9 @@
  * @license    http://lunr.nl/LICENSE MIT License
  */
 
-namespace Lunr\Libraries\Core;
+namespace Lunr\Core\Tests;
+
+use Lunr\Core\Configuration;
 
 /**
  * This tests the ArrayAccess methods of the Configuration class.
@@ -22,8 +24,8 @@ namespace Lunr\Libraries\Core;
  * @package    Core
  * @subpackage Tests
  * @author     Heinz Wiesinger <heinz@m2mobi.com>
- * @depends    Lunr\Libraries\Core\ConfigurationArrayConstructorTest::testConfig
- * @covers     Lunr\Libraries\Core\Configuration
+ * @depends    Lunr\Core\Tests\ConfigurationArrayConstructorTest::testConfig
+ * @covers     Lunr\Core\Configuration
  */
 class ConfigurationArrayAccessTest extends ConfigurationTest
 {
@@ -117,7 +119,7 @@ class ConfigurationArrayAccessTest extends ConfigurationTest
     /**
      * Test offsetSet() with a given offset.
      *
-     * @depends Lunr\Libraries\Core\ConfigurationConvertArrayToClassTest::testConvertArrayToClassWithMultidimensionalArrayValue
+     * @depends Lunr\Core\Tests\ConfigurationConvertArrayToClassTest::testConvertArrayToClassWithMultidimensionalArrayValue
      */
     public function testOffsetSetWithGivenOffset()
     {
@@ -137,7 +139,7 @@ class ConfigurationArrayAccessTest extends ConfigurationTest
     /**
      * Test offsetSet() with a null offset.
      *
-     * @depends Lunr\Libraries\Core\ConfigurationConvertArrayToClassTest::testConvertArrayToClassWithMultidimensionalArrayValue
+     * @depends Lunr\Core\Tests\ConfigurationConvertArrayToClassTest::testConvertArrayToClassWithMultidimensionalArrayValue
      */
     public function testOffsetSetWithNullOffset()
     {

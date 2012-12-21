@@ -14,7 +14,9 @@
  * @license    http://lunr.nl/LICENSE MIT License
  */
 
-namespace Lunr\Libraries\Core;
+namespace Lunr\Core\Tests;
+
+use Lunr\Core\Configuration;
 
 /**
  * Basic tests for the Configuration class,
@@ -24,7 +26,7 @@ namespace Lunr\Libraries\Core;
  * @package    Core
  * @subpackage Tests
  * @author     Heinz Wiesinger <heinz@m2mobi.com>
- * @covers     Lunr\Libraries\Core\Configuration
+ * @covers     Lunr\Core\Configuration
  */
 class ConfigurationNonArrayConstructorTest extends ConfigurationTest
 {

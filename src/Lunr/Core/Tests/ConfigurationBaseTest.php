@@ -13,7 +13,9 @@
  * @license    http://lunr.nl/LICENSE MIT License
  */
 
-namespace Lunr\Libraries\Core;
+namespace Lunr\Core\Tests;
+
+use Lunr\Core\Configuration;
 
 /**
  * Basic tests for the Configuration class, with
@@ -23,7 +25,7 @@ namespace Lunr\Libraries\Core;
  * @package    Core
  * @subpackage Tests
  * @author     Heinz Wiesinger <heinz@m2mobi.com>
- * @covers     Lunr\Libraries\Core\Configuration
+ * @covers     Lunr\Core\Configuration
  */
 class ConfigurationBaseTest extends ConfigurationTest
 {
@@ -79,7 +81,7 @@ class ConfigurationBaseTest extends ConfigurationTest
     /**
      * Test the function __toString().
      *
-     * @covers Lunr\Libraries\Core\Configuration::__toString
+     * @covers Lunr\Core\Configuration::__toString
      */
     public function testToString()
     {
@@ -94,7 +96,7 @@ class ConfigurationBaseTest extends ConfigurationTest
      * Test conversion to array when $config is empty.
      *
      * @depends testConfigIsEmpty
-     * @covers  Lunr\Libraries\Core\Configuration::toArray
+     * @covers  Lunr\Core\Configuration::toArray
      */
     public function testToArrayIsEmpty()
     {
@@ -105,7 +107,7 @@ class ConfigurationBaseTest extends ConfigurationTest
      * Test current() returns False if $config is empty.
      *
      * @depends testConfigIsEmpty
-     * @covers  Lunr\libraries\Core\Configuration::current
+     * @covers  Lunr\Core\Configuration::current
      */
     public function testCurrentIsFalseWithEmptyArray()
     {
@@ -116,7 +118,7 @@ class ConfigurationBaseTest extends ConfigurationTest
      * Test key() returns NULL if $config is empty.
      *
      * @depends testConfigIsEmpty
-     * @covers  Lunr\Libraries\Core\Configuration::key
+     * @covers  Lunr\Core\Configuration::key
      */
     public function testKeyIsNullWithEmptyArray()
     {
@@ -128,7 +130,7 @@ class ConfigurationBaseTest extends ConfigurationTest
      *
      * @depends testConfigIsEmpty
      * @depends testCurrentIsFalseWithEmptyArray
-     * @covers  Lunr\Libraries\Core\Configuration::key
+     * @covers  Lunr\Core\Configuration::key
      */
     public function testValidIsFalseWithEmptyArray()
     {
@@ -139,7 +141,7 @@ class ConfigurationBaseTest extends ConfigurationTest
      * Test that next() increases the internal position pointer.
      *
      * @depends testPositionIsZero
-     * @covers  Lunr\Libraries\Core\Configuration::next
+     * @covers  Lunr\Core\Configuration::next
      */
     public function testNextIncreasesPosition()
     {
@@ -153,7 +155,7 @@ class ConfigurationBaseTest extends ConfigurationTest
      * Test that count() returns zero.
      *
      * @depends testConfigIsEmpty
-     * @covers  Lunr\Libraries\Core\Configuration::count
+     * @covers  Lunr\Core\Configuration::count
      */
     public function testCountIsZero()
     {

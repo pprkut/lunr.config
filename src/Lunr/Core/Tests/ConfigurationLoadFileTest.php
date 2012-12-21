@@ -13,7 +13,9 @@
  * @license    http://lunr.nl/LICENSE MIT License
  */
 
-namespace Lunr\Libraries\Core;
+namespace Lunr\Core\Tests;
+
+use Lunr\Core\Configuration;
 
 /**
  * This tests loading configuration files via the Configuration class.
@@ -22,8 +24,8 @@ namespace Lunr\Libraries\Core;
  * @package    Core
  * @subpackage Tests
  * @author     Heinz Wiesinger <heinz@m2mobi.com>
- * @depends    Lunr\Libraries\Core\ConfigurationConvertArrayToClassTest::testConvertArrayToClassWithMultidimensionalArrayValue
- * @covers     Lunr\Libraries\Core\Configuration
+ * @depends    Lunr\Core\Tests\ConfigurationConvertArrayToClassTest::testConvertArrayToClassWithMultidimensionalArrayValue
+ * @covers     Lunr\Core\Configuration
  */
 class ConfigurationLoadFileTest extends ConfigurationTest
 {
@@ -34,7 +36,7 @@ class ConfigurationLoadFileTest extends ConfigurationTest
     public function setUp()
     {
         $this->setUpArray($this->construct_test_array());
-        set_include_path(dirname(__FILE__) . '/../../../statics/configuration:' . get_include_path());
+        set_include_path(dirname(__FILE__) . '/../../../../tests/statics/configuration:' . get_include_path());
     }
 
     /**
@@ -42,7 +44,7 @@ class ConfigurationLoadFileTest extends ConfigurationTest
      *
      * @runInSeparateProcess
      *
-     * @depends Lunr\Libraries\Core\ConfigurationArrayConstructorTest::testToArrayEqualsInput
+     * @depends Lunr\Core\Tests\ConfigurationArrayConstructorTest::testToArrayEqualsInput
      */
     public function testLoadCorrectFile()
     {
@@ -120,11 +122,11 @@ class ConfigurationLoadFileTest extends ConfigurationTest
      *
      * @runInSeparateProcess
      *
-     * @depends Lunr\Libraries\Core\ConfigurationArrayConstructorTest::testToArrayEqualsInput
+     * @depends Lunr\Core\Tests\ConfigurationArrayConstructorTest::testToArrayEqualsInput
      */
     public function testLoadCorrectDatabaseConfig()
     {
-        set_include_path(dirname(__FILE__) . '/../../../statics/configuration/valid:' . get_include_path());
+        set_include_path(dirname(__FILE__) . '/../../../../tests/statics/configuration/valid:' . get_include_path());
 
         $this->configuration->load_database_config();
 
@@ -149,7 +151,7 @@ class ConfigurationLoadFileTest extends ConfigurationTest
      */
     public function testLoadInvalidDatabaseConfig()
     {
-        set_include_path(dirname(__FILE__) . '/../../../statics/configuration/invalid:' . get_include_path());
+        set_include_path(dirname(__FILE__) . '/../../../../tests/statics/configuration/invalid:' . get_include_path());
 
         $property = $this->configuration_reflection->getProperty('config');
         $property->setAccessible(TRUE);
@@ -191,7 +193,7 @@ class ConfigurationLoadFileTest extends ConfigurationTest
      */
     public function testLoadDatabaseConfigInvalidatesSize()
     {
-        set_include_path(dirname(__FILE__) . '/../../../statics/configuration/valid:' . get_include_path());
+        set_include_path(dirname(__FILE__) . '/../../../../tests/statics/configuration/valid:' . get_include_path());
 
         $property = $this->configuration_reflection->getProperty('size_invalid');
         $property->setAccessible(TRUE);

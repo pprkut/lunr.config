@@ -13,8 +13,9 @@
  * @license    http://lunr.nl/LICENSE MIT License
  */
 
-namespace Lunr\Libraries\Core;
+namespace Lunr\Core\Tests;
 
+use Lunr\Core\Configuration;
 use PHPUnit_Framework_TestCase;
 use ReflectionClass;
 use stdClass;
@@ -27,7 +28,7 @@ use stdClass;
  * @package    Core
  * @subpackage Tests
  * @author     Heinz Wiesinger <heinz@m2mobi.com>
- * @covers     Lunr\Libraries\Core\DateTime
+ * @covers     Lunr\Core\DateTime
  */
 abstract class ConfigurationTest extends PHPUnit_Framework_TestCase
 {
@@ -58,7 +59,7 @@ abstract class ConfigurationTest extends PHPUnit_Framework_TestCase
     protected function setUpNonArray()
     {
         $this->configuration            = new Configuration();
-        $this->configuration_reflection = new ReflectionClass('Lunr\Libraries\Core\Configuration');
+        $this->configuration_reflection = new ReflectionClass('Lunr\Core\Configuration');
     }
 
     /**
@@ -72,7 +73,7 @@ abstract class ConfigurationTest extends PHPUnit_Framework_TestCase
     {
         $this->config                   = $config;
         $this->configuration            = new Configuration($config);
-        $this->configuration_reflection = new ReflectionClass('Lunr\Libraries\Core\Configuration');
+        $this->configuration_reflection = new ReflectionClass('Lunr\Core\Configuration');
     }
 
     /**

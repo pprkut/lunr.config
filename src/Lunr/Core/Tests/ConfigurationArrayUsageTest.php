@@ -13,7 +13,9 @@
  * @license    http://lunr.nl/LICENSE MIT License
  */
 
-namespace Lunr\Libraries\Core;
+namespace Lunr\Core\Tests;
+
+use Lunr\Core\Configuration;
 
 /**
  * This tests the ArrayAccess methods of the Configuration class.
@@ -22,7 +24,7 @@ namespace Lunr\Libraries\Core;
  * @package    Core
  * @subpackage Tests
  * @author     Heinz Wiesinger <heinz@m2mobi.com>
- * @covers     Lunr\Libraries\Core\Configuration
+ * @covers     Lunr\Core\Configuration
  */
 class ConfigurationArrayUsageTest extends ConfigurationTest
 {
@@ -38,7 +40,7 @@ class ConfigurationArrayUsageTest extends ConfigurationTest
     /**
      * Test accessing the Configuration class as an array for read operations.
      *
-     * @depends Lunr\Libraries\Core\ConfigurationArrayAccessTest::testOffsetGetWithExistingOffset
+     * @depends Lunr\Core\Tests\ConfigurationArrayAccessTest::testOffsetGetWithExistingOffset
      */
     public function testArrayReadAccess()
     {
@@ -48,7 +50,7 @@ class ConfigurationArrayUsageTest extends ConfigurationTest
     /**
      * Test accessing the Configuration class as an array for write operations.
      *
-     * @depends Lunr\Libraries\Core\ConfigurationArrayAccessTest::testOffsetSetWithGivenOffset
+     * @depends Lunr\Core\Tests\ConfigurationArrayAccessTest::testOffsetSetWithGivenOffset
      */
     public function testArrayWriteAccess()
     {
@@ -71,7 +73,7 @@ class ConfigurationArrayUsageTest extends ConfigurationTest
      * @param mixed $offset Offset
      *
      * @dataProvider existingConfigPairProvider
-     * @depends      Lunr\Libraries\Core\ConfigurationArrayAccessTest::testOffsetExists
+     * @depends      Lunr\Core\Tests\ConfigurationArrayAccessTest::testOffsetExists
      */
     public function testIssetOnExistingOffset($offset)
     {
@@ -84,7 +86,7 @@ class ConfigurationArrayUsageTest extends ConfigurationTest
      * @param mixed $offset Offset
      *
      * @dataProvider nonExistingConfigPairProvider
-     * @depends      Lunr\Libraries\Core\ConfigurationArrayAccessTest::testOffsetDoesNotExist
+     * @depends      Lunr\Core\Tests\ConfigurationArrayAccessTest::testOffsetDoesNotExist
      */
     public function testIssetOnNonExistingOffset($offset)
     {
@@ -94,16 +96,16 @@ class ConfigurationArrayUsageTest extends ConfigurationTest
     /**
      * Test correct foreach behavior.
      *
-     * @depends Lunr\Libraries\Core\ConfigurationArrayAccessTest::testOffsetExists
-     * @depends Lunr\Libraries\Core\ConfigurationArrayAccessTest::testOffsetDoesNotExist
-     * @depends Lunr\Libraries\Core\ConfigurationArrayAccessTest::testOffsetGetWithExistingOffset
-     * @depends Lunr\Libraries\Core\ConfigurationArrayConstructorTest::testRewindRewindsPointer
-     * @depends Lunr\Libraries\Core\ConfigurationArrayConstructorTest::testValidIsTrueForExistingElement
-     * @depends Lunr\Libraries\Core\ConfigurationArrayConstructorTest::testValidIsTrueWhenElementValueIsFalse
-     * @depends Lunr\Libraries\Core\ConfigurationArrayConstructorTest::testValidIsFalseOnNonExistingElement
-     * @depends Lunr\Libraries\Core\ConfigurationArrayConstructorTest::testNextAdvancesPointer
-     * @depends Lunr\Libraries\Core\ConfigurationArrayConstructorTest::testCurrentIsFirstElement
-     * @depends Lunr\Libraries\Core\ConfigurationArrayConstructorTest::testKeyIsFirstElement
+     * @depends Lunr\Core\Tests\ConfigurationArrayAccessTest::testOffsetExists
+     * @depends Lunr\Core\Tests\ConfigurationArrayAccessTest::testOffsetDoesNotExist
+     * @depends Lunr\Core\Tests\ConfigurationArrayAccessTest::testOffsetGetWithExistingOffset
+     * @depends Lunr\Core\Tests\ConfigurationArrayConstructorTest::testRewindRewindsPointer
+     * @depends Lunr\Core\Tests\ConfigurationArrayConstructorTest::testValidIsTrueForExistingElement
+     * @depends Lunr\Core\Tests\ConfigurationArrayConstructorTest::testValidIsTrueWhenElementValueIsFalse
+     * @depends Lunr\Core\Tests\ConfigurationArrayConstructorTest::testValidIsFalseOnNonExistingElement
+     * @depends Lunr\Core\Tests\ConfigurationArrayConstructorTest::testNextAdvancesPointer
+     * @depends Lunr\Core\Tests\ConfigurationArrayConstructorTest::testCurrentIsFirstElement
+     * @depends Lunr\Core\Tests\ConfigurationArrayConstructorTest::testKeyIsFirstElement
      */
     public function testForeach()
     {
