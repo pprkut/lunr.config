@@ -9,17 +9,17 @@
             colors="true"
             verbose="true">
     <php>
-        <ini name="zend.enable_gc" value="0" />
+        <ini name="zend.enable_gc" value="1" />
     </php>
     <testsuites>
         <testsuite name="Core">
-            <file>src/Lunr/Core/Tests/ConfigurationBaseTest.php</file>
-            <file>src/Lunr/Core/Tests/ConfigurationConvertArrayToClassTest.php</file>
-            <file>src/Lunr/Core/Tests/ConfigurationNonArrayConstructorTest.php</file>
-            <file>src/Lunr/Core/Tests/ConfigurationArrayConstructorTest.php</file>
-            <file>src/Lunr/Core/Tests/ConfigurationArrayAccessTest.php</file>
-            <file>src/Lunr/Core/Tests/ConfigurationLoadFileTest.php</file>
-            <file>src/Lunr/Core/Tests/ConfigurationArrayUsageTest.php</file>
+            <file>../src/Lunr/Core/Tests/ConfigurationBaseTest.php</file>
+            <file>../src/Lunr/Core/Tests/ConfigurationConvertArrayToClassTest.php</file>
+            <file>../src/Lunr/Core/Tests/ConfigurationNonArrayConstructorTest.php</file>
+            <file>../src/Lunr/Core/Tests/ConfigurationArrayConstructorTest.php</file>
+            <file>../src/Lunr/Core/Tests/ConfigurationArrayAccessTest.php</file>
+            <file>../src/Lunr/Core/Tests/ConfigurationLoadFileTest.php</file>
+            <file>../src/Lunr/Core/Tests/ConfigurationArrayUsageTest.php</file>
         </testsuite>
     </testsuites>
     <filter>
