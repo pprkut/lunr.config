@@ -8,3 +8,6 @@ build
 
 # ignore sqlite databases
 *.db
+
+# ignore composer install directory
+vendor
