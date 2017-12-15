@@ -9,5 +9,6 @@ build
 # ignore sqlite databases
 *.db
 
-# ignore composer install directory
+# ignore generated files
 vendor
+decomposer.autoload.inc.php
