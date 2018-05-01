@@ -20,7 +20,6 @@ $base = __DIR__ . '/..';
 set_include_path(
     $base . '/src:' .
     $base . '/config:' .
-    $base . '/system:' .
     $base . '/tests:' .
     $base . '/tests/statics:' .
     $base . '/tests/statics/Core:' .
