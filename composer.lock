@@ -4,8 +4,101 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "1cfb8a14eb745602c97516c303c4372d",
-    "packages": [],
+    "content-hash": "198e0d8c3ad97de38eec48a4563010d9",
+    "packages": [
+        {
+            "name": "lunr/halo",
+            "version": "0.5.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/M2Mobi/lunr.halo.git",
+                "reference": "45033e474d0681a07709f53764dbf16dea94575f"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/M2Mobi/lunr.halo/zipball/45033e474d0681a07709f53764dbf16dea94575f",
+                "reference": "45033e474d0681a07709f53764dbf16dea94575f",
+                "shasum": ""
+            },
+            "require": {
+                "php": "5.6.* || 7.*",
+                "psr/log": "~1.0.2"
+            },
+            "require-dev": {
+                "ext-xdebug": "~2.4",
+                "phpunit/phpunit": "~5.7"
+            },
+            "suggest": {
+                "ext-runkit": "Needed for unit tests on PHP 5 to mock internals",
+                "ext-uopz": "Needed for unit tests on PHP 7 to mock internals"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Lunr\\Halo\\": "src/Lunr/Halo/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "description": "Lunr.Halo is a set of PHPUnit helper libraries.",
+            "homepage": "https://github.com/M2Mobi/lunr.halo",
+            "keywords": [
+                "mocking",
+                "phpunit",
+                "unit tests"
+            ],
+            "time": "2018-08-03T09:26:19+00:00"
+        },
+        {
+            "name": "psr/log",
+            "version": "1.0.2",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/php-fig/log.git",
+                "reference": "4ebe3a8bf773a19edfe0a84b6585ba3d401b724d"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/php-fig/log/zipball/4ebe3a8bf773a19edfe0a84b6585ba3d401b724d",
+                "reference": "4ebe3a8bf773a19edfe0a84b6585ba3d401b724d",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3.0"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "1.0.x-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Psr\\Log\\": "Psr/Log/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "PHP-FIG",
+                    "homepage": "http://www.php-fig.org/"
+                }
+            ],
+            "description": "Common interface for logging libraries",
+            "homepage": "https://github.com/php-fig/log",
+            "keywords": [
+                "log",
+                "psr",
+                "psr-3"
+            ],
+            "time": "2016-10-10T12:19:37+00:00"
+        }
+    ],
     "packages-dev": [
         {
             "name": "doctrine/instantiator",
