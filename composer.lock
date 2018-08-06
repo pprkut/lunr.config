@@ -4,33 +4,30 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "198e0d8c3ad97de38eec48a4563010d9",
+    "content-hash": "c1b58344d807e0d6049316cfeb8b19ec",
     "packages": [
         {
             "name": "lunr/halo",
-            "version": "0.5.0",
+            "version": "dev-master",
             "source": {
                 "type": "git",
                 "url": "https://github.com/M2Mobi/lunr.halo.git",
-                "reference": "45033e474d0681a07709f53764dbf16dea94575f"
+                "reference": "4e524e0742eb6f8327db05a45a10214867ebd801"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/M2Mobi/lunr.halo/zipball/45033e474d0681a07709f53764dbf16dea94575f",
-                "reference": "45033e474d0681a07709f53764dbf16dea94575f",
+                "url": "https://api.github.com/repos/M2Mobi/lunr.halo/zipball/4e524e0742eb6f8327db05a45a10214867ebd801",
+                "reference": "4e524e0742eb6f8327db05a45a10214867ebd801",
                 "shasum": ""
             },
             "require": {
-                "php": "5.6.* || 7.*",
+                "ext-uopz": "~5.0.1",
+                "php": "7.*",
                 "psr/log": "~1.0.2"
             },
             "require-dev": {
                 "ext-xdebug": "~2.4",
                 "phpunit/phpunit": "~5.7"
-            },
-            "suggest": {
-                "ext-runkit": "Needed for unit tests on PHP 5 to mock internals",
-                "ext-uopz": "Needed for unit tests on PHP 7 to mock internals"
             },
             "type": "library",
             "autoload": {
@@ -49,7 +46,7 @@
                 "phpunit",
                 "unit tests"
             ],
-            "time": "2018-08-03T09:26:19+00:00"
+            "time": "2018-12-07T10:16:08+00:00"
         },
         {
             "name": "psr/log",
@@ -1494,7 +1491,9 @@
     ],
     "aliases": [],
     "minimum-stability": "stable",
-    "stability-flags": [],
+    "stability-flags": {
+        "lunr/halo": 20
+    },
     "prefer-stable": false,
     "prefer-lowest": false,
     "platform": {
