@@ -4,20 +4,20 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "3f53c352f5891b2ff7e4ba3c44972be8",
+    "content-hash": "c1b58344d807e0d6049316cfeb8b19ec",
     "packages": [
         {
             "name": "lunr/halo",
-            "version": "0.6.0",
+            "version": "dev-master",
             "source": {
                 "type": "git",
                 "url": "https://github.com/M2Mobi/lunr.halo.git",
-                "reference": "337eece9d7607828ce99ae6dc9afa017cb272d0c"
+                "reference": "4e524e0742eb6f8327db05a45a10214867ebd801"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/M2Mobi/lunr.halo/zipball/337eece9d7607828ce99ae6dc9afa017cb272d0c",
-                "reference": "337eece9d7607828ce99ae6dc9afa017cb272d0c",
+                "url": "https://api.github.com/repos/M2Mobi/lunr.halo/zipball/4e524e0742eb6f8327db05a45a10214867ebd801",
+                "reference": "4e524e0742eb6f8327db05a45a10214867ebd801",
                 "shasum": ""
             },
             "require": {
@@ -46,7 +46,7 @@
                 "phpunit",
                 "unit tests"
             ],
-            "time": "2018-10-24T11:17:11+00:00"
+            "time": "2018-12-07T10:16:08+00:00"
         },
         {
             "name": "psr/log",
@@ -1491,7 +1491,9 @@
     ],
     "aliases": [],
     "minimum-stability": "stable",
-    "stability-flags": [],
+    "stability-flags": {
+        "lunr/halo": 20
+    },
     "prefer-stable": false,
     "prefer-lowest": false,
     "platform": {
