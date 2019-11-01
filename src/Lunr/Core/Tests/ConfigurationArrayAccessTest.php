@@ -25,7 +25,7 @@ class ConfigurationArrayAccessTest extends ConfigurationTest
     /**
      * TestCase Constructor.
      */
-    public function setUp()
+    public function setUp(): void
     {
         $this->setUpArray($this->construct_test_array());
     }
@@ -81,7 +81,7 @@ class ConfigurationArrayAccessTest extends ConfigurationTest
     /**
      * Test that offsetUnset() unsets the config value.
      */
-    public function testOffsetUnsetDoesUnset()
+    public function testOffsetUnsetDoesUnset(): void
     {
         $property = $this->configuration_reflection->getProperty('config');
         $property->setAccessible(TRUE);
@@ -96,7 +96,7 @@ class ConfigurationArrayAccessTest extends ConfigurationTest
     /**
      * Test that offsetUnset sets $size_invalid to FALSE.
      */
-    public function testOffsetUnsetInvalidatesSize()
+    public function testOffsetUnsetInvalidatesSize(): void
     {
         $property = $this->configuration_reflection->getProperty('size_invalid');
         $property->setAccessible(TRUE);
@@ -113,7 +113,7 @@ class ConfigurationArrayAccessTest extends ConfigurationTest
      *
      * @depends Lunr\Core\Tests\ConfigurationConvertArrayToClassTest::testConvertArrayToClassWithMultidimensionalArrayValue
      */
-    public function testOffsetSetWithGivenOffset()
+    public function testOffsetSetWithGivenOffset(): void
     {
         $property = $this->configuration_reflection->getProperty('config');
         $property->setAccessible(TRUE);
@@ -133,7 +133,7 @@ class ConfigurationArrayAccessTest extends ConfigurationTest
      *
      * @depends Lunr\Core\Tests\ConfigurationConvertArrayToClassTest::testConvertArrayToClassWithMultidimensionalArrayValue
      */
-    public function testOffsetSetWithNullOffset()
+    public function testOffsetSetWithNullOffset(): void
     {
         $property = $this->configuration_reflection->getProperty('config');
         $property->setAccessible(TRUE);
@@ -151,7 +151,7 @@ class ConfigurationArrayAccessTest extends ConfigurationTest
     /**
      * Test that offsetSet sets $size_invalid to FALSE.
      */
-    public function testOffsetSetInvalidatesSize()
+    public function testOffsetSetInvalidatesSize(): void
     {
         $property = $this->configuration_reflection->getProperty('size_invalid');
         $property->setAccessible(TRUE);

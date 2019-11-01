@@ -25,7 +25,7 @@ class ConfigurationLoadFileTest extends ConfigurationTest
     /**
      * TestCase Constructor.
      */
-    public function setUp()
+    public function setUp(): void
     {
         $this->setUpArray($this->construct_test_array());
     }
@@ -35,7 +35,7 @@ class ConfigurationLoadFileTest extends ConfigurationTest
      *
      * @depends Lunr\Core\Tests\ConfigurationArrayConstructorTest::testToArrayEqualsInput
      */
-    public function testLoadCorrectFile()
+    public function testLoadCorrectFile(): void
     {
         $this->configuration->load_file('correct');
 
@@ -54,7 +54,7 @@ class ConfigurationLoadFileTest extends ConfigurationTest
      *
      * @depends Lunr\Core\Tests\ConfigurationArrayConstructorTest::testToArrayEqualsInput
      */
-    public function testLoadFileOverwritesValues()
+    public function testLoadFileOverwritesValues(): void
     {
         $property = $this->configuration_reflection->getProperty('config');
         $property->setAccessible(TRUE);
@@ -75,7 +75,7 @@ class ConfigurationLoadFileTest extends ConfigurationTest
      *
      * @depends Lunr\Core\Tests\ConfigurationArrayConstructorTest::testToArrayEqualsInput
      */
-    public function testLoadFileMergesArrays()
+    public function testLoadFileMergesArrays(): void
     {
         $property = $this->configuration_reflection->getProperty('config');
         $property->setAccessible(TRUE);
@@ -95,7 +95,7 @@ class ConfigurationLoadFileTest extends ConfigurationTest
     /**
      * Test loading an invalid config file.
      */
-    public function testLoadInvalidFile()
+    public function testLoadInvalidFile(): void
     {
         $property = $this->configuration_reflection->getProperty('config');
         $property->setAccessible(TRUE);
@@ -112,7 +112,7 @@ class ConfigurationLoadFileTest extends ConfigurationTest
     /**
      * Test loading a non-existing file.
      */
-    public function testLoadNonExistingFile()
+    public function testLoadNonExistingFile(): void
     {
         if (class_exists('\PHPUnit\Framework\Error\Error'))
         {
@@ -140,7 +140,7 @@ class ConfigurationLoadFileTest extends ConfigurationTest
     /**
      * Test that loading a file invalidates the cached size value.
      */
-    public function testLoadFileInvalidatesSize()
+    public function testLoadFileInvalidatesSize(): void
     {
         $property = $this->configuration_reflection->getProperty('size_invalid');
         $property->setAccessible(TRUE);

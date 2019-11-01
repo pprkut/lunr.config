@@ -26,7 +26,7 @@ class ConfigurationArrayConstructorTest extends ConfigurationTest
     /**
      * TestCase Constructor.
      */
-    public function setUp()
+    public function setUp(): void
     {
         $this->setUpArray($this->construct_test_array());
     }
@@ -34,7 +34,7 @@ class ConfigurationArrayConstructorTest extends ConfigurationTest
     /**
      * Test that the internal position pointer is initially zero.
      */
-    public function testPositionIsZero()
+    public function testPositionIsZero(): void
     {
         $property = $this->configuration_reflection->getProperty('position');
         $property->setAccessible(TRUE);
@@ -44,7 +44,7 @@ class ConfigurationArrayConstructorTest extends ConfigurationTest
     /**
      * Test that the initial size value is cached.
      */
-    public function testSizeInvalidIsFalse()
+    public function testSizeInvalidIsFalse(): void
     {
         $property = $this->configuration_reflection->getProperty('size_invalid');
         $property->setAccessible(TRUE);
@@ -54,7 +54,7 @@ class ConfigurationArrayConstructorTest extends ConfigurationTest
     /**
      * Test that initial size of the initialized class is two.
      */
-    public function testSizeIsTwo()
+    public function testSizeIsTwo(): void
     {
         $property = $this->configuration_reflection->getProperty('size');
         $property->setAccessible(TRUE);
@@ -64,7 +64,7 @@ class ConfigurationArrayConstructorTest extends ConfigurationTest
     /**
      * Test that $config is set up according to the input.
      */
-    public function testConfig()
+    public function testConfig(): void
     {
         $property = $this->configuration_reflection->getProperty('config');
         $property->setAccessible(TRUE);
@@ -79,7 +79,7 @@ class ConfigurationArrayConstructorTest extends ConfigurationTest
      *
      * @covers Lunr\Core\Configuration::toArray
      */
-    public function testToArrayEqualsInput()
+    public function testToArrayEqualsInput(): void
     {
         $this->assertEquals($this->config, $this->configuration->toArray());
     }
@@ -87,7 +87,7 @@ class ConfigurationArrayConstructorTest extends ConfigurationTest
     /**
      * Test Cloning the Configuration class.
      */
-    public function testCloneClass()
+    public function testCloneClass(): void
     {
         $config = clone $this->configuration;
 
@@ -101,7 +101,7 @@ class ConfigurationArrayConstructorTest extends ConfigurationTest
      * @depends testConfig
      * @covers  Lunr\Core\Configuration::current
      */
-    public function testCurrentIsFirstElement()
+    public function testCurrentIsFirstElement(): void
     {
         $this->assertEquals($this->config['test1'], $this->configuration->current());
     }
@@ -112,7 +112,7 @@ class ConfigurationArrayConstructorTest extends ConfigurationTest
      * @depends testConfig
      * @covers  Lunr\Core\Configuration::key
      */
-    public function testKeyIsFirstElement()
+    public function testKeyIsFirstElement(): void
     {
         $this->assertEquals('test1', $this->configuration->key());
     }
@@ -124,7 +124,7 @@ class ConfigurationArrayConstructorTest extends ConfigurationTest
      * @depends testPositionIsZero
      * @covers  Lunr\Core\Configuration::current
      */
-    public function testCurrentDoesNotAdvancePointer()
+    public function testCurrentDoesNotAdvancePointer(): void
     {
         $this->assertEquals($this->config['test1'], $this->configuration->current());
         $this->assertEquals($this->config['test1'], $this->configuration->current());
@@ -142,7 +142,7 @@ class ConfigurationArrayConstructorTest extends ConfigurationTest
      * @depends testPositionIsZero
      * @covers  Lunr\Core\Configuration::key
      */
-    public function testKeyDoesNotAdvancePointer()
+    public function testKeyDoesNotAdvancePointer(): void
     {
         $this->assertEquals('test1', $this->configuration->key());
         $this->assertEquals('test1', $this->configuration->key());
@@ -161,7 +161,7 @@ class ConfigurationArrayConstructorTest extends ConfigurationTest
      * @depends Lunr\Core\Tests\ConfigurationBaseTest::testNextIncreasesPosition
      * @covers  Lunr\Core\Configuration::next
      */
-    public function testNextAdvancesPointer()
+    public function testNextAdvancesPointer(): void
     {
         $this->configuration->next();
 
@@ -179,7 +179,7 @@ class ConfigurationArrayConstructorTest extends ConfigurationTest
      * @depends testNextAdvancesPointer
      * @covers  Lunr\Core\Configuration::key
      */
-    public function testKeyIsSecondElementAfterNext()
+    public function testKeyIsSecondElementAfterNext(): void
     {
         $this->configuration->next();
         $this->assertEquals('test2', $this->configuration->key());
@@ -192,7 +192,7 @@ class ConfigurationArrayConstructorTest extends ConfigurationTest
      * @depends testNextAdvancesPointer
      * @covers  Lunr\Core\Configuration::valid
      */
-    public function testValidIsTrueForExistingElement()
+    public function testValidIsTrueForExistingElement(): void
     {
         $this->assertTrue($this->configuration->valid());
     }
@@ -204,7 +204,7 @@ class ConfigurationArrayConstructorTest extends ConfigurationTest
      * @depends testNextAdvancesPointer
      * @covers  Lunr\Core\Configuration::valid
      */
-    public function testValidIsTrueWhenElementValueIsFalse()
+    public function testValidIsTrueWhenElementValueIsFalse(): void
     {
         $this->configuration->next();
         $this->configuration->current()->next();
@@ -222,7 +222,7 @@ class ConfigurationArrayConstructorTest extends ConfigurationTest
      * @depends testNextAdvancesPointer
      * @covers  Lunr\Core\Configuration::valid
      */
-    public function testValidIsFalseOnNonExistingElement()
+    public function testValidIsFalseOnNonExistingElement(): void
     {
         $this->configuration->next();
         $this->configuration->next();
@@ -236,7 +236,7 @@ class ConfigurationArrayConstructorTest extends ConfigurationTest
      * @depends testNextAdvancesPointer
      * @covers  Lunr\Core\Configuration::rewind
      */
-    public function testRewindRewindsPosition()
+    public function testRewindRewindsPosition(): void
     {
         $this->configuration->next();
 
@@ -256,7 +256,7 @@ class ConfigurationArrayConstructorTest extends ConfigurationTest
      * @depends testNextAdvancesPointer
      * @covers  Lunr\Core\Configuration::rewind
      */
-    public function testRewindRewindsPointer()
+    public function testRewindRewindsPointer(): void
     {
         $this->configuration->next();
 

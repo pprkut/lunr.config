@@ -24,7 +24,7 @@ class ConfigurationArrayUsageTest extends ConfigurationTest
     /**
      * TestCase Constructor.
      */
-    public function setUp()
+    public function setUp(): void
     {
         $this->setUpArray($this->construct_test_array());
     }
@@ -34,7 +34,7 @@ class ConfigurationArrayUsageTest extends ConfigurationTest
      *
      * @depends Lunr\Core\Tests\ConfigurationArrayAccessTest::testOffsetGetWithExistingOffset
      */
-    public function testArrayReadAccess()
+    public function testArrayReadAccess(): void
     {
         $this->assertEquals($this->config['test1'], $this->configuration['test1']);
     }
@@ -44,7 +44,7 @@ class ConfigurationArrayUsageTest extends ConfigurationTest
      *
      * @depends Lunr\Core\Tests\ConfigurationArrayAccessTest::testOffsetSetWithGivenOffset
      */
-    public function testArrayWriteAccess()
+    public function testArrayWriteAccess(): void
     {
         $property = $this->configuration_reflection->getProperty('config');
         $property->setAccessible(TRUE);
@@ -99,7 +99,7 @@ class ConfigurationArrayUsageTest extends ConfigurationTest
      * @depends Lunr\Core\Tests\ConfigurationArrayConstructorTest::testCurrentIsFirstElement
      * @depends Lunr\Core\Tests\ConfigurationArrayConstructorTest::testKeyIsFirstElement
      */
-    public function testForeach()
+    public function testForeach(): void
     {
         $iteration = 0;
 

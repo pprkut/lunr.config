@@ -26,7 +26,7 @@ class ConfigurationNonArrayConstructorTest extends ConfigurationTest
     /**
      * TestCase Constructor.
      */
-    public function setUp()
+    public function setUp(): void
     {
         $this->setUpNonArray();
     }
@@ -34,7 +34,7 @@ class ConfigurationNonArrayConstructorTest extends ConfigurationTest
     /**
      * Test that the internal config storage is initially empty.
      */
-    public function testConfigIsEmpty()
+    public function testConfigIsEmpty(): void
     {
         $property = $this->configuration_reflection->getProperty('config');
         $property->setAccessible(TRUE);
@@ -44,7 +44,7 @@ class ConfigurationNonArrayConstructorTest extends ConfigurationTest
     /**
      * Test that the internal position pointer is initially zero.
      */
-    public function testPositionIsZero()
+    public function testPositionIsZero(): void
     {
         $property = $this->configuration_reflection->getProperty('position');
         $property->setAccessible(TRUE);
@@ -54,7 +54,7 @@ class ConfigurationNonArrayConstructorTest extends ConfigurationTest
     /**
      * Test that the initial size value is cached.
      */
-    public function testSizeInvalidIsFalse()
+    public function testSizeInvalidIsFalse(): void
     {
         $property = $this->configuration_reflection->getProperty('size_invalid');
         $property->setAccessible(TRUE);
@@ -64,7 +64,7 @@ class ConfigurationNonArrayConstructorTest extends ConfigurationTest
     /**
      * Test that the initial size value is zero.
      */
-    public function testSizeIsZero()
+    public function testSizeIsZero(): void
     {
         $property = $this->configuration_reflection->getProperty('size');
         $property->setAccessible(TRUE);

@@ -25,7 +25,7 @@ class ConfigurationConvertArrayToClassTest extends ConfigurationTest
     /**
      * TestCase Constructor.
      */
-    public function setUp()
+    public function setUp(): void
     {
         $this->setUpArray([]);
     }
@@ -50,7 +50,7 @@ class ConfigurationConvertArrayToClassTest extends ConfigurationTest
      *
      * @covers Lunr\Core\Configuration::convert_array_to_class
      */
-    public function testConvertArrayToClassWithEmptyArrayValue()
+    public function testConvertArrayToClassWithEmptyArrayValue(): void
     {
         $method = $this->configuration_reflection->getMethod('convert_array_to_class');
         $method->setAccessible(TRUE);
@@ -74,7 +74,7 @@ class ConfigurationConvertArrayToClassTest extends ConfigurationTest
      *
      * @covers Lunr\Core\Configuration::convert_array_to_class
      */
-    public function testConvertArrayToClassWithArrayValue()
+    public function testConvertArrayToClassWithArrayValue(): void
     {
         $input          = [];
         $input['test']  = 'String';
@@ -93,7 +93,7 @@ class ConfigurationConvertArrayToClassTest extends ConfigurationTest
      * @depends testConvertArrayToClassWithArrayValue
      * @covers  Lunr\Core\Configuration::convert_array_to_class
      */
-    public function testConvertArrayToClassWithMultidimensionalArrayValue()
+    public function testConvertArrayToClassWithMultidimensionalArrayValue(): void
     {
         $config                   = [];
         $config['test1']          = 'String';

@@ -25,7 +25,7 @@ class ConfigurationBaseTest extends ConfigurationTest
     /**
      * TestCase Constructor.
      */
-    public function setUp()
+    public function setUp(): void
     {
         $this->setUpArray([]);
     }
@@ -33,7 +33,7 @@ class ConfigurationBaseTest extends ConfigurationTest
     /**
      * Test that the internal config storage is initially empty.
      */
-    public function testConfigIsEmpty()
+    public function testConfigIsEmpty(): void
     {
         $property = $this->configuration_reflection->getProperty('config');
         $property->setAccessible(TRUE);
@@ -43,7 +43,7 @@ class ConfigurationBaseTest extends ConfigurationTest
     /**
      * Test that the internal position pointer is initially zero.
      */
-    public function testPositionIsZero()
+    public function testPositionIsZero(): void
     {
         $property = $this->configuration_reflection->getProperty('position');
         $property->setAccessible(TRUE);
@@ -53,7 +53,7 @@ class ConfigurationBaseTest extends ConfigurationTest
     /**
      * Test that the initial size value is cached.
      */
-    public function testSizeInvalidIsFalse()
+    public function testSizeInvalidIsFalse(): void
     {
         $property = $this->configuration_reflection->getProperty('size_invalid');
         $property->setAccessible(TRUE);
@@ -63,7 +63,7 @@ class ConfigurationBaseTest extends ConfigurationTest
     /**
      * Test that the initial size value is zero.
      */
-    public function testSizeIsZero()
+    public function testSizeIsZero(): void
     {
         $property = $this->configuration_reflection->getProperty('size');
         $property->setAccessible(TRUE);
@@ -75,7 +75,7 @@ class ConfigurationBaseTest extends ConfigurationTest
      *
      * @covers Lunr\Core\Configuration::__toString
      */
-    public function testToString()
+    public function testToString(): void
     {
         ob_start();
         echo $this->configuration;
@@ -90,7 +90,7 @@ class ConfigurationBaseTest extends ConfigurationTest
      * @depends testConfigIsEmpty
      * @covers  Lunr\Core\Configuration::toArray
      */
-    public function testToArrayIsEmpty()
+    public function testToArrayIsEmpty(): void
     {
         $this->assertEquals([], $this->configuration->toArray());
     }
@@ -101,7 +101,7 @@ class ConfigurationBaseTest extends ConfigurationTest
      * @depends testConfigIsEmpty
      * @covers  Lunr\Core\Configuration::current
      */
-    public function testCurrentIsFalseWithEmptyArray()
+    public function testCurrentIsFalseWithEmptyArray(): void
     {
         $this->assertFalse($this->configuration->current());
     }
@@ -112,7 +112,7 @@ class ConfigurationBaseTest extends ConfigurationTest
      * @depends testConfigIsEmpty
      * @covers  Lunr\Core\Configuration::key
      */
-    public function testKeyIsNullWithEmptyArray()
+    public function testKeyIsNullWithEmptyArray(): void
     {
         $this->assertNull($this->configuration->key());
     }
@@ -124,7 +124,7 @@ class ConfigurationBaseTest extends ConfigurationTest
      * @depends testCurrentIsFalseWithEmptyArray
      * @covers  Lunr\Core\Configuration::key
      */
-    public function testValidIsFalseWithEmptyArray()
+    public function testValidIsFalseWithEmptyArray(): void
     {
         $this->assertFalse($this->configuration->valid());
     }
@@ -135,7 +135,7 @@ class ConfigurationBaseTest extends ConfigurationTest
      * @depends testPositionIsZero
      * @covers  Lunr\Core\Configuration::next
      */
-    public function testNextIncreasesPosition()
+    public function testNextIncreasesPosition(): void
     {
         $property = $this->configuration_reflection->getProperty('position');
         $property->setAccessible(TRUE);
@@ -149,7 +149,7 @@ class ConfigurationBaseTest extends ConfigurationTest
      * @depends testConfigIsEmpty
      * @covers  Lunr\Core\Configuration::count
      */
-    public function testCountIsZero()
+    public function testCountIsZero(): void
     {
         $this->assertEquals(0, $this->configuration->count());
         $this->assertEquals(0, count($this->configuration));

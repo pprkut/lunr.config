@@ -71,7 +71,7 @@ abstract class ConfigurationTest extends TestCase
     /**
      * TestCase Destructor.
      */
-    protected function tearDown()
+    protected function tearDown(): void
     {
         unset($this->config);
         unset($this->configuration);
@@ -99,7 +99,7 @@ abstract class ConfigurationTest extends TestCase
      *
      * @return array $values Set of non-array values.
      */
-    public function nonArrayValueProvider()
+    public function nonArrayValueProvider(): array
     {
         $values   = [];
         $values[] = [ 'String' ];
@@ -116,7 +116,7 @@ abstract class ConfigurationTest extends TestCase
      *
      * @return array $pairs Existing key->value pairs
      */
-    public function existingConfigPairProvider()
+    public function existingConfigPairProvider(): array
     {
         $pairs   = [];
         $pairs[] = [ 'test1', 'String' ];
@@ -129,7 +129,7 @@ abstract class ConfigurationTest extends TestCase
      *
      * @return array $pairs Not existing key->value pairs
      */
-    public function nonExistingConfigPairProvider()
+    public function nonExistingConfigPairProvider(): array
     {
         $pairs   = [];
         $pairs[] = [ 'test4', 'Value' ];
