@@ -36,7 +36,7 @@ class ConfigurationArrayUsageTest extends ConfigurationTest
      */
     public function testArrayReadAccess(): void
     {
-        $this->assertEquals($this->config['test1'], $this->configuration['test1']);
+        $this->assertEquals($this->config['test1'], $this->class['test1']);
     }
 
     /**
@@ -46,14 +46,11 @@ class ConfigurationArrayUsageTest extends ConfigurationTest
      */
     public function testArrayWriteAccess(): void
     {
-        $property = $this->configuration_reflection->getProperty('config');
-        $property->setAccessible(TRUE);
+        $this->assertArrayNotHasKey('test4', $this->get_reflection_property_value('config'));
 
-        $this->assertArrayNotHasKey('test4', $property->getValue($this->configuration));
+        $this->class['test4'] = 'Value';
 
-        $this->configuration['test4'] = 'Value';
-
-        $array = $property->getValue($this->configuration);
+        $array = $this->get_reflection_property_value('config');
 
         $this->assertArrayHasKey('test4', $array);
         $this->assertEquals('Value', $array['test4']);
@@ -69,7 +66,7 @@ class ConfigurationArrayUsageTest extends ConfigurationTest
      */
     public function testIssetOnExistingOffset($offset)
     {
-        $this->assertTrue(isset($this->configuration[$offset]));
+        $this->assertTrue(isset($this->class[$offset]));
     }
 
     /**
@@ -82,7 +79,7 @@ class ConfigurationArrayUsageTest extends ConfigurationTest
      */
     public function testIssetOnNonExistingOffset($offset)
     {
-        $this->assertFalse(isset($this->configuration[$offset]));
+        $this->assertFalse(isset($this->class[$offset]));
     }
 
     /**
@@ -103,18 +100,15 @@ class ConfigurationArrayUsageTest extends ConfigurationTest
     {
         $iteration = 0;
 
-        $property = $this->configuration_reflection->getProperty('config');
-        $property->setAccessible(TRUE);
+        $config = $this->get_reflection_property_value('config');
 
-        $config = $property->getValue($this->configuration);
-
-        foreach ($this->configuration as $key => $value)
+        foreach ($this->class as $key => $value)
         {
             $this->assertEquals($config[$key], $value);
             ++$iteration;
         }
 
-        $this->assertEquals($iteration, count($this->configuration));
+        $this->assertEquals($iteration, count($this->class));
     }
 
 }

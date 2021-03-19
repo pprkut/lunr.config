@@ -35,9 +35,7 @@ class ConfigurationBaseTest extends ConfigurationTest
      */
     public function testConfigIsEmpty(): void
     {
-        $property = $this->configuration_reflection->getProperty('config');
-        $property->setAccessible(TRUE);
-        $this->assertEmpty($property->getValue($this->configuration));
+        $this->assertEmpty($this->get_reflection_property_value('config'));
     }
 
     /**
@@ -45,9 +43,7 @@ class ConfigurationBaseTest extends ConfigurationTest
      */
     public function testPositionIsZero(): void
     {
-        $property = $this->configuration_reflection->getProperty('position');
-        $property->setAccessible(TRUE);
-        $this->assertEquals(0, $property->getValue($this->configuration));
+        $this->assertPropertyEquals('position', 0);
     }
 
     /**
@@ -55,9 +51,7 @@ class ConfigurationBaseTest extends ConfigurationTest
      */
     public function testSizeInvalidIsFalse(): void
     {
-        $property = $this->configuration_reflection->getProperty('size_invalid');
-        $property->setAccessible(TRUE);
-        $this->assertFalse($property->getValue($this->configuration));
+        $this->assertPropertyEquals('size_invalid', FALSE);
     }
 
     /**
@@ -65,9 +59,7 @@ class ConfigurationBaseTest extends ConfigurationTest
      */
     public function testSizeIsZero(): void
     {
-        $property = $this->configuration_reflection->getProperty('size');
-        $property->setAccessible(TRUE);
-        $this->assertEquals(0, $property->getValue($this->configuration));
+        $this->assertPropertyEquals('size', 0);
     }
 
     /**
@@ -77,11 +69,8 @@ class ConfigurationBaseTest extends ConfigurationTest
      */
     public function testToString(): void
     {
-        ob_start();
-        echo $this->configuration;
-        $output = ob_get_contents();
-        ob_end_clean();
-        $this->assertEquals('Array', $output);
+        echo $this->class;
+        $this->expectOutputString('Array');
     }
 
     /**
@@ -92,7 +81,7 @@ class ConfigurationBaseTest extends ConfigurationTest
      */
     public function testToArrayIsEmpty(): void
     {
-        $this->assertEquals([], $this->configuration->toArray());
+        $this->assertEquals([], $this->class->toArray());
     }
 
     /**
@@ -103,7 +92,7 @@ class ConfigurationBaseTest extends ConfigurationTest
      */
     public function testCurrentIsFalseWithEmptyArray(): void
     {
-        $this->assertFalse($this->configuration->current());
+        $this->assertFalse($this->class->current());
     }
 
     /**
@@ -114,7 +103,7 @@ class ConfigurationBaseTest extends ConfigurationTest
      */
     public function testKeyIsNullWithEmptyArray(): void
     {
-        $this->assertNull($this->configuration->key());
+        $this->assertNull($this->class->key());
     }
 
     /**
@@ -126,7 +115,7 @@ class ConfigurationBaseTest extends ConfigurationTest
      */
     public function testValidIsFalseWithEmptyArray(): void
     {
-        $this->assertFalse($this->configuration->valid());
+        $this->assertFalse($this->class->valid());
     }
 
     /**
@@ -137,10 +126,8 @@ class ConfigurationBaseTest extends ConfigurationTest
      */
     public function testNextIncreasesPosition(): void
     {
-        $property = $this->configuration_reflection->getProperty('position');
-        $property->setAccessible(TRUE);
-        $this->configuration->next();
-        $this->assertEquals(1, $property->getValue($this->configuration));
+        $this->class->next();
+        $this->assertPropertyEquals('position', 1);
     }
 
     /**
@@ -151,8 +138,8 @@ class ConfigurationBaseTest extends ConfigurationTest
      */
     public function testCountIsZero(): void
     {
-        $this->assertEquals(0, $this->configuration->count());
-        $this->assertEquals(0, count($this->configuration));
+        $this->assertEquals(0, $this->class->count());
+        $this->assertEquals(0, count($this->class));
     }
 
 }

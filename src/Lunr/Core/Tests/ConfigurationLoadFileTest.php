@@ -37,16 +37,16 @@ class ConfigurationLoadFileTest extends ConfigurationTest
      */
     public function testLoadCorrectFile(): void
     {
-        $this->configuration->load_file('correct');
+        $this->class->load_file('correct');
 
         $this->config['load']        = [];
         $this->config['load']['one'] = 'Value';
         $this->config['load']['two'] = 'String';
 
-        $property = $this->configuration_reflection->getProperty('config');
+        $property = $this->reflection->getProperty('config');
         $property->setAccessible(TRUE);
 
-        $this->assertEquals($this->config, $this->configuration->toArray());
+        $this->assertEquals($this->config, $this->class->toArray());
     }
 
     /**
@@ -56,10 +56,10 @@ class ConfigurationLoadFileTest extends ConfigurationTest
      */
     public function testLoadFileOverwritesValues(): void
     {
-        $property = $this->configuration_reflection->getProperty('config');
+        $property = $this->reflection->getProperty('config');
         $property->setAccessible(TRUE);
 
-        $this->configuration->load_file('overwrite');
+        $this->class->load_file('overwrite');
 
         $config                   = [];
         $config['test1']          = 'Value';
@@ -67,7 +67,7 @@ class ConfigurationLoadFileTest extends ConfigurationTest
         $config['test2']['test3'] = 1;
         $config['test2']['test4'] = FALSE;
 
-        $this->assertEquals($config, $this->configuration->toArray());
+        $this->assertEquals($config, $this->class->toArray());
     }
 
     /**
@@ -77,10 +77,10 @@ class ConfigurationLoadFileTest extends ConfigurationTest
      */
     public function testLoadFileMergesArrays(): void
     {
-        $property = $this->configuration_reflection->getProperty('config');
+        $property = $this->reflection->getProperty('config');
         $property->setAccessible(TRUE);
 
-        $this->configuration->load_file('merge');
+        $this->class->load_file('merge');
 
         $config                   = [];
         $config['test1']          = 'String';
@@ -89,7 +89,7 @@ class ConfigurationLoadFileTest extends ConfigurationTest
         $config['test2']['test4'] = FALSE;
         $config['test2']['test5'] = 'Value';
 
-        $this->assertEquals($config, $this->configuration->toArray());
+        $this->assertEquals($config, $this->class->toArray());
     }
 
     /**
@@ -97,14 +97,14 @@ class ConfigurationLoadFileTest extends ConfigurationTest
      */
     public function testLoadInvalidFile(): void
     {
-        $property = $this->configuration_reflection->getProperty('config');
+        $property = $this->reflection->getProperty('config');
         $property->setAccessible(TRUE);
 
-        $before = $property->getValue($this->configuration);
+        $before = $property->getValue($this->class);
 
-        $this->configuration->load_file('not_array');
+        $this->class->load_file('not_array');
 
-        $after = $property->getValue($this->configuration);
+        $after = $property->getValue($this->class);
 
         $this->assertEquals($before, $after);
     }
@@ -125,14 +125,14 @@ class ConfigurationLoadFileTest extends ConfigurationTest
             $this->expectException('\PHPUnit_Framework_Error');
         }
 
-        $property = $this->configuration_reflection->getProperty('config');
+        $property = $this->reflection->getProperty('config');
         $property->setAccessible(TRUE);
 
-        $before = $property->getValue($this->configuration);
+        $before = $property->getValue($this->class);
 
-        $this->configuration->load_file('not_exists');
+        $this->class->load_file('not_exists');
 
-        $after = $property->getValue($this->configuration);
+        $after = $property->getValue($this->class);
 
         $this->assertEquals($before, $after);
     }
@@ -142,14 +142,14 @@ class ConfigurationLoadFileTest extends ConfigurationTest
      */
     public function testLoadFileInvalidatesSize(): void
     {
-        $property = $this->configuration_reflection->getProperty('size_invalid');
+        $property = $this->reflection->getProperty('size_invalid');
         $property->setAccessible(TRUE);
 
-        $this->assertFalse($property->getValue($this->configuration));
+        $this->assertFalse($property->getValue($this->class));
 
-        $this->configuration->load_file('correct');
+        $this->class->load_file('correct');
 
-        $this->assertTrue($property->getValue($this->configuration));
+        $this->assertTrue($property->getValue($this->class));
     }
 
 }

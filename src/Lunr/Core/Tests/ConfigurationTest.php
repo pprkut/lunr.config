@@ -12,6 +12,7 @@
 namespace Lunr\Core\Tests;
 
 use Lunr\Core\Configuration;
+use Lunr\Halo\LunrBaseTest;
 use PHPUnit\Framework\TestCase;
 use ReflectionClass;
 use stdClass;
@@ -22,20 +23,8 @@ use stdClass;
  *
  * @covers     Lunr\Core\DateTime
  */
-abstract class ConfigurationTest extends TestCase
+abstract class ConfigurationTest extends LunrBaseTest
 {
-
-    /**
-     * Instance of the Configuration class.
-     * @var Configuration
-     */
-    protected $configuration;
-
-    /**
-     * Reflection instance of the Configuration class.
-     * @var ReflectionClass
-     */
-    protected $configuration_reflection;
 
     /**
      * Default config values.
@@ -50,8 +39,8 @@ abstract class ConfigurationTest extends TestCase
      */
     protected function setUpNonArray()
     {
-        $this->configuration            = new Configuration();
-        $this->configuration_reflection = new ReflectionClass('Lunr\Core\Configuration');
+        $this->class      = new Configuration();
+        $this->reflection = new ReflectionClass('Lunr\Core\Configuration');
     }
 
     /**
@@ -63,19 +52,19 @@ abstract class ConfigurationTest extends TestCase
      */
     protected function setUpArray($config)
     {
-        $this->config                   = $config;
-        $this->configuration            = new Configuration($config);
-        $this->configuration_reflection = new ReflectionClass('Lunr\Core\Configuration');
+        $this->config     = $config;
+        $this->class      = new Configuration($config);
+        $this->reflection = new ReflectionClass('Lunr\Core\Configuration');
     }
 
     /**
      * TestCase Destructor.
      */
-    protected function tearDown(): void
+    public function tearDown(): void
     {
         unset($this->config);
-        unset($this->configuration);
-        unset($this->configuration_reflection);
+        unset($this->class);
+        unset($this->reflection);
     }
 
     /**

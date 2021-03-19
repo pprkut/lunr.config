@@ -36,9 +36,7 @@ class ConfigurationArrayConstructorTest extends ConfigurationTest
      */
     public function testPositionIsZero(): void
     {
-        $property = $this->configuration_reflection->getProperty('position');
-        $property->setAccessible(TRUE);
-        $this->assertEquals(0, $property->getValue($this->configuration));
+        $this->assertPropertyEquals('position', 0);
     }
 
     /**
@@ -46,9 +44,7 @@ class ConfigurationArrayConstructorTest extends ConfigurationTest
      */
     public function testSizeInvalidIsFalse(): void
     {
-        $property = $this->configuration_reflection->getProperty('size_invalid');
-        $property->setAccessible(TRUE);
-        $this->assertFalse($property->getValue($this->configuration));
+        $this->assertPropertySame('size_invalid', FALSE);
     }
 
     /**
@@ -56,9 +52,7 @@ class ConfigurationArrayConstructorTest extends ConfigurationTest
      */
     public function testSizeIsTwo(): void
     {
-        $property = $this->configuration_reflection->getProperty('size');
-        $property->setAccessible(TRUE);
-        $this->assertEquals(2, $property->getValue($this->configuration));
+        $this->assertPropertyEquals('size', 2);
     }
 
     /**
@@ -66,9 +60,7 @@ class ConfigurationArrayConstructorTest extends ConfigurationTest
      */
     public function testConfig(): void
     {
-        $property = $this->configuration_reflection->getProperty('config');
-        $property->setAccessible(TRUE);
-        $output = $property->getValue($this->configuration);
+        $output = $this->get_reflection_property_value('config');
 
         $this->assertEquals($this->config['test1'], $output['test1']);
         $this->assertInstanceOf('Lunr\Core\Configuration', $output['test2']);
@@ -81,7 +73,7 @@ class ConfigurationArrayConstructorTest extends ConfigurationTest
      */
     public function testToArrayEqualsInput(): void
     {
-        $this->assertEquals($this->config, $this->configuration->toArray());
+        $this->assertEquals($this->config, $this->class->toArray());
     }
 
     /**
@@ -89,10 +81,10 @@ class ConfigurationArrayConstructorTest extends ConfigurationTest
      */
     public function testCloneClass(): void
     {
-        $config = clone $this->configuration;
+        $config = clone $this->class;
 
-        $this->assertEquals($config, $this->configuration);
-        $this->assertNotSame($config, $this->configuration);
+        $this->assertEquals($config, $this->class);
+        $this->assertNotSame($config, $this->class);
     }
 
     /**
@@ -103,7 +95,7 @@ class ConfigurationArrayConstructorTest extends ConfigurationTest
      */
     public function testCurrentIsFirstElement(): void
     {
-        $this->assertEquals($this->config['test1'], $this->configuration->current());
+        $this->assertEquals($this->config['test1'], $this->class->current());
     }
 
     /**
@@ -114,7 +106,7 @@ class ConfigurationArrayConstructorTest extends ConfigurationTest
      */
     public function testKeyIsFirstElement(): void
     {
-        $this->assertEquals('test1', $this->configuration->key());
+        $this->assertEquals('test1', $this->class->key());
     }
 
     /**
@@ -126,13 +118,10 @@ class ConfigurationArrayConstructorTest extends ConfigurationTest
      */
     public function testCurrentDoesNotAdvancePointer(): void
     {
-        $this->assertEquals($this->config['test1'], $this->configuration->current());
-        $this->assertEquals($this->config['test1'], $this->configuration->current());
+        $this->assertEquals($this->config['test1'], $this->class->current());
+        $this->assertEquals($this->config['test1'], $this->class->current());
 
-        $property = $this->configuration_reflection->getProperty('position');
-        $property->setAccessible(TRUE);
-
-        $this->assertEquals(0, $property->getValue($this->configuration));
+        $this->assertPropertyEquals('position', 0);
     }
 
     /**
@@ -144,13 +133,10 @@ class ConfigurationArrayConstructorTest extends ConfigurationTest
      */
     public function testKeyDoesNotAdvancePointer(): void
     {
-        $this->assertEquals('test1', $this->configuration->key());
-        $this->assertEquals('test1', $this->configuration->key());
+        $this->assertEquals('test1', $this->class->key());
+        $this->assertEquals('test1', $this->class->key());
 
-        $property = $this->configuration_reflection->getProperty('position');
-        $property->setAccessible(TRUE);
-
-        $this->assertEquals(0, $property->getValue($this->configuration));
+        $this->assertPropertyEquals('position', 0);
     }
 
     /**
@@ -163,13 +149,11 @@ class ConfigurationArrayConstructorTest extends ConfigurationTest
      */
     public function testNextAdvancesPointer(): void
     {
-        $this->configuration->next();
+        $this->class->next();
 
-        $property = $this->configuration_reflection->getProperty('config');
-        $property->setAccessible(TRUE);
-        $config = $property->getValue($this->configuration);
+        $output = $this->get_reflection_property_value('config');
 
-        $this->assertEquals($config['test2'], $this->configuration->current());
+        $this->assertEquals($output['test2'], $this->class->current());
     }
 
     /**
@@ -181,8 +165,8 @@ class ConfigurationArrayConstructorTest extends ConfigurationTest
      */
     public function testKeyIsSecondElementAfterNext(): void
     {
-        $this->configuration->next();
-        $this->assertEquals('test2', $this->configuration->key());
+        $this->class->next();
+        $this->assertEquals('test2', $this->class->key());
     }
 
     /**
@@ -194,7 +178,7 @@ class ConfigurationArrayConstructorTest extends ConfigurationTest
      */
     public function testValidIsTrueForExistingElement(): void
     {
-        $this->assertTrue($this->configuration->valid());
+        $this->assertTrue($this->class->valid());
     }
 
     /**
@@ -206,13 +190,13 @@ class ConfigurationArrayConstructorTest extends ConfigurationTest
      */
     public function testValidIsTrueWhenElementValueIsFalse(): void
     {
-        $this->configuration->next();
-        $this->configuration->current()->next();
+        $this->class->next();
+        $this->class->current()->next();
 
-        $this->assertFalse($this->configuration->current()->current());
-        $this->assertNotNull($this->configuration->current()->key());
+        $this->assertFalse($this->class->current()->current());
+        $this->assertNotNull($this->class->current()->key());
 
-        $this->assertTrue($this->configuration->current()->valid());
+        $this->assertTrue($this->class->current()->valid());
     }
 
     /**
@@ -224,10 +208,10 @@ class ConfigurationArrayConstructorTest extends ConfigurationTest
      */
     public function testValidIsFalseOnNonExistingElement(): void
     {
-        $this->configuration->next();
-        $this->configuration->next();
+        $this->class->next();
+        $this->class->next();
 
-        $this->assertFalse($this->configuration->valid());
+        $this->assertFalse($this->class->valid());
     }
 
     /**
@@ -238,16 +222,13 @@ class ConfigurationArrayConstructorTest extends ConfigurationTest
      */
     public function testRewindRewindsPosition(): void
     {
-        $this->configuration->next();
+        $this->class->next();
 
-        $property = $this->configuration_reflection->getProperty('position');
-        $property->setAccessible(TRUE);
+        $this->assertPropertyEquals('position', 1);
 
-        $this->assertEquals(1, $property->getValue($this->configuration));
+        $this->class->rewind();
 
-        $this->configuration->rewind();
-
-        $this->assertEquals(0, $property->getValue($this->configuration));
+        $this->assertPropertyEquals('position', 0);
     }
 
     /**
@@ -258,11 +239,11 @@ class ConfigurationArrayConstructorTest extends ConfigurationTest
      */
     public function testRewindRewindsPointer(): void
     {
-        $this->configuration->next();
+        $this->class->next();
 
-        $this->configuration->rewind();
+        $this->class->rewind();
 
-        $this->assertEquals($this->config['test1'], $this->configuration->current());
+        $this->assertEquals($this->config['test1'], $this->class->current());
     }
 
 }

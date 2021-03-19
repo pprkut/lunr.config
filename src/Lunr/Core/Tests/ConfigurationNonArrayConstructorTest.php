@@ -36,9 +36,7 @@ class ConfigurationNonArrayConstructorTest extends ConfigurationTest
      */
     public function testConfigIsEmpty(): void
     {
-        $property = $this->configuration_reflection->getProperty('config');
-        $property->setAccessible(TRUE);
-        $this->assertEmpty($property->getValue($this->configuration));
+        $this->assertEmpty($this->get_reflection_property_value('config'));
     }
 
     /**
@@ -46,9 +44,7 @@ class ConfigurationNonArrayConstructorTest extends ConfigurationTest
      */
     public function testPositionIsZero(): void
     {
-        $property = $this->configuration_reflection->getProperty('position');
-        $property->setAccessible(TRUE);
-        $this->assertEquals(0, $property->getValue($this->configuration));
+        $this->assertPropertyEquals('position', 0);
     }
 
     /**
@@ -56,9 +52,7 @@ class ConfigurationNonArrayConstructorTest extends ConfigurationTest
      */
     public function testSizeInvalidIsFalse(): void
     {
-        $property = $this->configuration_reflection->getProperty('size_invalid');
-        $property->setAccessible(TRUE);
-        $this->assertFalse($property->getValue($this->configuration));
+        $this->assertPropertySame('size_invalid', FALSE);
     }
 
     /**
@@ -66,9 +60,7 @@ class ConfigurationNonArrayConstructorTest extends ConfigurationTest
      */
     public function testSizeIsZero(): void
     {
-        $property = $this->configuration_reflection->getProperty('size');
-        $property->setAccessible(TRUE);
-        $this->assertEquals(0, $property->getValue($this->configuration));
+        $this->assertPropertyEquals('size', 0);
     }
 
 }
