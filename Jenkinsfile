@@ -109,12 +109,12 @@ pipeline {
             steps{
                 withSonarQubeEnv('M2mobi') {
                     sh """sonar-scanner \\
-                    		-Dsonar.projectKey=php:lunr.config \\
-                    		-Dsonar.projectName=Lunr.Config \\
-                    		-Dsonar.sources=src/ \\
-                    		-Dsonar.php.tests.reportPath=build/logs/junit.xml \\
-                    		-Dsonar.php.coverage.reportPaths=build/logs/clover.xml"""
-                    sh './tests/get-sonar-report.sh php:lunr.config'
+                            -Dsonar.projectKey=php:${currentBuild.rawBuild.project.parent.displayName.toLowerCase()} \\
+                            -Dsonar.projectName=Lunr.Config \\
+                            -Dsonar.sources=src/ \\
+                            -Dsonar.php.tests.reportPath=build/logs/junit.xml \\
+                            -Dsonar.php.coverage.reportPaths=build/logs/clover.xml"""
+                    sh "./tests/get-sonar-report.sh php:${currentBuild.rawBuild.project.parent.displayName.toLowerCase()}"
                 }
             }
             post {
