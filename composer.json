@@ -6,12 +6,12 @@
   "type": "library",
   "license": "MIT",
   "require": {
-    "php": "7.*"
+    "php": "~7.2||8.0"
   },
   "require-dev": {
     "lunr/halo": "dev-master",
-    "phpunit/phpunit": "~7.0",
-    "ext-xdebug": "~2.4"
+    "phpunit/phpunit": "~8.0",
+    "ext-xdebug": ">=2.4"
   },
   "config": {
     "optimize-autoloader": true
