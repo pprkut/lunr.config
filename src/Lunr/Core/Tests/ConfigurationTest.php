@@ -37,7 +37,7 @@ abstract class ConfigurationTest extends LunrBaseTest
      *
      * @return void
      */
-    protected function setUpNonArray()
+    protected function setUpNonArray(): void
     {
         $this->class      = new Configuration();
         $this->reflection = new ReflectionClass('Lunr\Core\Configuration');
@@ -50,7 +50,7 @@ abstract class ConfigurationTest extends LunrBaseTest
      *
      * @return void
      */
-    protected function setUpArray($config)
+    protected function setUpArray($config): void
     {
         $this->config     = $config;
         $this->class      = new Configuration($config);
@@ -72,7 +72,7 @@ abstract class ConfigurationTest extends LunrBaseTest
      *
      * @return array Test $config array
      */
-    protected function construct_test_array()
+    protected function construct_test_array(): array
     {
         $config                   = [];
         $config['test1']          = 'String';

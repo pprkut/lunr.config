@@ -38,7 +38,7 @@ class ConfigurationConvertArrayToClassTest extends ConfigurationTest
      * @dataProvider nonArrayValueProvider
      * @covers       Lunr\Core\Configuration::convert_array_to_class
      */
-    public function testConvertArrayToClassWithNonArrayValues($input)
+    public function testConvertArrayToClassWithNonArrayValues($input): void
     {
         $method = $this->get_accessible_reflection_method('convert_array_to_class');
         $this->assertEquals($input, $method->invokeArgs($this->class, [ $input ]));

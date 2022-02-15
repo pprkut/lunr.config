@@ -64,7 +64,7 @@ class ConfigurationArrayUsageTest extends ConfigurationTest
      * @dataProvider existingConfigPairProvider
      * @depends      Lunr\Core\Tests\ConfigurationArrayAccessTest::testOffsetExists
      */
-    public function testIssetOnExistingOffset($offset)
+    public function testIssetOnExistingOffset($offset): void
     {
         $this->assertTrue(isset($this->class[$offset]));
     }
@@ -77,7 +77,7 @@ class ConfigurationArrayUsageTest extends ConfigurationTest
      * @dataProvider nonExistingConfigPairProvider
      * @depends      Lunr\Core\Tests\ConfigurationArrayAccessTest::testOffsetDoesNotExist
      */
-    public function testIssetOnNonExistingOffset($offset)
+    public function testIssetOnNonExistingOffset($offset): void
     {
         $this->assertFalse(isset($this->class[$offset]));
     }
