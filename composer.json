@@ -6,11 +6,11 @@
   "type": "library",
   "license": "MIT",
   "require": {
-    "php": "~7.4||~8.0"
+    "php": ">=7.4"
   },
   "require-dev": {
     "lunr/halo": "dev-master",
-    "phpunit/phpunit": "~9.0"
+    "phpunit/phpunit": ">=8.5"
   },
   "config": {
     "optimize-autoloader": true
