@@ -50,8 +50,8 @@ class Configuration implements ArrayAccess, Iterator, Countable
     /**
      * Constructor.
      *
-     * @param array $bootstrap Bootstrap config values, aka config values used before
-     *                         the class has been instantiated.
+     * @param array|bool $bootstrap Bootstrap config values, aka config values used before
+     *                              the class has been instantiated.
      */
     public function __construct($bootstrap = FALSE)
     {
@@ -120,7 +120,7 @@ class Configuration implements ArrayAccess, Iterator, Countable
      *
      * @return void
      */
-    public function load_file($identifier)
+    public function load_file(string $identifier): void
     {
         $config = $this->config;
 
@@ -148,6 +148,7 @@ class Configuration implements ArrayAccess, Iterator, Countable
      *
      * @return mixed $array A scalar value or an array
      */
+    #[\ReturnTypeWillChange]
     private function convert_array_to_class($array)
     {
         if (!is_array($array))
@@ -182,7 +183,7 @@ class Configuration implements ArrayAccess, Iterator, Countable
      *
      * @return void
      */
-    public function offsetSet($offset, $value)
+    public function offsetSet($offset, $value): void
     {
         $value = $this->convert_array_to_class($value);
         if (is_null($offset))
@@ -208,7 +209,7 @@ class Configuration implements ArrayAccess, Iterator, Countable
      *
      * @return boolean $return TRUE on success, FALSE on failure
      */
-    public function offsetExists($offset)
+    public function offsetExists($offset): bool
     {
         return isset($this->config[$offset]);
     }
@@ -222,7 +223,7 @@ class Configuration implements ArrayAccess, Iterator, Countable
      *
      * @return void
      */
-    public function offsetUnset($offset)
+    public function offsetUnset($offset): void
     {
         unset($this->config[$offset]);
         $this->size_invalid = TRUE;
@@ -239,6 +240,7 @@ class Configuration implements ArrayAccess, Iterator, Countable
      * @return mixed $return The value of the requested offset or null if
      *                       it doesn't exist.
      */
+    #[\ReturnTypeWillChange]
     public function offsetGet($offset)
     {
         return isset($this->config[$offset]) ? $this->config[$offset] : NULL;
@@ -249,7 +251,7 @@ class Configuration implements ArrayAccess, Iterator, Countable
      *
      * @return array $data Array of all config values
      */
-    public function toArray()
+    public function toArray(): array
     {
         $data = $this->config;
         foreach ($data as $key => $value)
@@ -270,7 +272,7 @@ class Configuration implements ArrayAccess, Iterator, Countable
      *
      * @return void
      */
-    public function rewind()
+    public function rewind(): void
     {
         reset($this->config);
         $this->position = 0;
@@ -283,6 +285,7 @@ class Configuration implements ArrayAccess, Iterator, Countable
      *
      * @return mixed $return The current value of the config array
      */
+    #[\ReturnTypeWillChange]
     public function current()
     {
         return current($this->config);
@@ -295,6 +298,7 @@ class Configuration implements ArrayAccess, Iterator, Countable
      *
      * @return scalar $return Scalar on success, NULL on failure
      */
+    #[\ReturnTypeWillChange]
     public function key()
     {
         return key($this->config);
@@ -307,7 +311,7 @@ class Configuration implements ArrayAccess, Iterator, Countable
      *
      * @return void
      */
-    public function next()
+    public function next(): void
     {
         next($this->config);
         ++$this->position;
@@ -320,7 +324,7 @@ class Configuration implements ArrayAccess, Iterator, Countable
      *
      * @return boolean $return TRUE on success, FALSE on failure
      */
-    public function valid()
+    public function valid(): bool
     {
         $return = $this->current();
         if (($return === FALSE) && ($this->position + 1 <= $this->count()))
@@ -338,7 +342,7 @@ class Configuration implements ArrayAccess, Iterator, Countable
      *
      * @return integer $size Size of the config array
      */
-    public function count()
+    public function count(): int
     {
         if ($this->size_invalid === TRUE)
         {
