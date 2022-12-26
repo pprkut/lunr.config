@@ -9,7 +9,7 @@
     "php": ">=7.4"
   },
   "require-dev": {
-    "lunr/halo": "dev-master",
+    "lunr/halo": "~0.7.0",
     "phpunit/phpunit": ">=8.5"
   },
   "config": {
