@@ -9,8 +9,9 @@
     "php": ">=7.4"
   },
   "require-dev": {
-    "lunr/halo": "dev-master",
-    "phpunit/phpunit": ">=9.0 <9.6"
+    "phpunit/phpunit": ">=9.0 <9.6",
+    "mockery/mockery": "~1.5",
+    "lunr/halo": "dev-master"
   },
   "config": {
     "optimize-autoloader": true
