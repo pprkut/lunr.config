@@ -5,6 +5,15 @@
         "psr4": {
             "prefix": "Lunr\\Halo",
             "search-path": "/src/Lunr/Halo/"
-        }
+        },
+        "dev": true
+    },
+    "Mockery": {
+        "url": "https://github.com/mockery/mockery.git",
+        "version": "1.5.1",
+        "psr0": {
+            "path": "/library/"
+        },
+        "dev": true
     }
 }
