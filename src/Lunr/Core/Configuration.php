@@ -18,13 +18,16 @@ use Countable;
 
 /**
  * Configuration Class
+ *
+ * @implements ArrayAccess<int|string,mixed>
+ * @implements Iterator<int|string,mixed>
  */
 class Configuration implements ArrayAccess, Iterator, Countable
 {
 
     /**
      * Configuration values
-     * @var array
+     * @var array<int|string,mixed>
      */
     private $config;
 
@@ -49,8 +52,8 @@ class Configuration implements ArrayAccess, Iterator, Countable
     /**
      * Constructor.
      *
-     * @param array|bool $bootstrap Bootstrap config values, aka config values used before
-     *                              the class has been instantiated.
+     * @param array<int|string,mixed>|bool $bootstrap Bootstrap config values, aka config values used before
+     *                                                the class has been instantiated.
      */
     public function __construct($bootstrap = FALSE)
     {
@@ -143,7 +146,7 @@ class Configuration implements ArrayAccess, Iterator, Countable
     /**
      * Convert an input array recursively into a Configuration class hierarchy.
      *
-     * @param array $array Input array
+     * @param array<int|string,mixed> $array Input array
      *
      * @return mixed $array A scalar value or an array
      */
@@ -248,7 +251,7 @@ class Configuration implements ArrayAccess, Iterator, Countable
     /**
      * Convert class content to an array.
      *
-     * @return array $data Array of all config values
+     * @return array<int|string,mixed> $data Array of all config values
      */
     public function toArray(): array
     {
