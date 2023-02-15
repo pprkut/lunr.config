@@ -207,7 +207,7 @@ class Configuration implements ArrayAccess, Iterator, Countable
      *
      * @param mixed $offset An offset to check for
      *
-     * @return boolean $return TRUE on success, FALSE on failure
+     * @return bool $return TRUE on success, FALSE on failure
      */
     public function offsetExists($offset): bool
     {
@@ -322,7 +322,7 @@ class Configuration implements ArrayAccess, Iterator, Countable
      *
      * (Inherited from Iterator)
      *
-     * @return boolean $return TRUE on success, FALSE on failure
+     * @return bool $return TRUE on success, FALSE on failure
      */
     public function valid(): bool
     {
@@ -340,7 +340,7 @@ class Configuration implements ArrayAccess, Iterator, Countable
      *
      * (Inherited from Countable)
      *
-     * @return integer $size Size of the config array
+     * @return int $size Size of the config array
      */
     public function count(): int
     {
