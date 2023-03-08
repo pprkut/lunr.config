@@ -3,10 +3,8 @@
 /**
  * This file contains the ConfigurationAccessMockTrait.
  *
- * @package    Lunr\Halo
- * @author     Heinz Wiesinger <heinz@m2mobi.com>
- * @copyright  2023, Move Agency Group B.V., Zwolle, The Netherlands
- * @license    http://lunr.nl/LICENSE MIT License
+ * SPDX-FileCopyrightText: Copyright 2023 Move Agency Group B.V., Zwolle, The Netherlands
+ * SPDX-License-Identifier: MIT
  */
 
 namespace Lunr\Core\Tests\Helpers;
