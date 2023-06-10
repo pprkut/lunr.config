@@ -25,12 +25,12 @@ If you encounter any issues when using Lunr.Config you can report them [on githu
 About Us
 --------
 
-Lunr.Config development is spearheaded by [M2mobi][1].
+Lunr.Config development is spearheaded by [Move][1].
 
-  [1]: https://m2mobi.com
+  [1]: https://moveagency.com
   [2]: https://semver.org
   [3]: https://groups.google.com/forum/#!forum/lunr-users
   [4]: https://groups.google.com/forum/#!forum/lunr-developers
-  [5]: https://github.com/M2Mobi/lunr.config
+  [5]: https://github.com/lunr-php/lunr.config
   [6]: https://reviews.lunr.nl
-  [7]: https://github.com/M2Mobi/lunr.config/issues
+  [7]: https://github.com/lunr-php/lunr.config/issues

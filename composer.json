@@ -2,7 +2,7 @@
   "name": "lunr/config",
   "description": "Lunr.Config is a library for configuration file access and loading.",
   "keywords": [ "configuration" ],
-  "homepage": "https://github.com/M2Mobi/lunr.config",
+  "homepage": "https://github.com/lunr-php/lunr.config",
   "type": "library",
   "license": "MIT",
   "require": {
