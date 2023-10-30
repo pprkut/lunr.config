@@ -20,7 +20,7 @@ use stdClass;
  * This class contains common setup routines, providers
  * and shared attributes for testing the Configuration class.
  *
- * @covers     Lunr\Core\DateTime
+ * @covers Lunr\Core\Configuration
  */
 abstract class ConfigurationTest extends LunrBaseTest
 {
@@ -32,14 +32,21 @@ abstract class ConfigurationTest extends LunrBaseTest
     protected $config;
 
     /**
+     * Instance of the tested class.
+     * @var Configuration
+     */
+    protected Configuration $class;
+
+    /**
      * Setup a default Configuration class.
      *
      * @return void
      */
     protected function setUpNonArray(): void
     {
-        $this->class      = new Configuration();
-        $this->reflection = new ReflectionClass('Lunr\Core\Configuration');
+        $this->class = new Configuration();
+
+        parent::baseSetUp($this->class);
     }
 
     /**
@@ -51,9 +58,10 @@ abstract class ConfigurationTest extends LunrBaseTest
      */
     protected function setUpArray($config): void
     {
-        $this->config     = $config;
-        $this->class      = new Configuration($config);
-        $this->reflection = new ReflectionClass('Lunr\Core\Configuration');
+        $this->config = $config;
+        $this->class  = new Configuration($config);
+
+        parent::baseSetUp($this->class);
     }
 
     /**
@@ -63,7 +71,8 @@ abstract class ConfigurationTest extends LunrBaseTest
     {
         unset($this->config);
         unset($this->class);
-        unset($this->reflection);
+
+        parent::tearDown();
     }
 
     /**
