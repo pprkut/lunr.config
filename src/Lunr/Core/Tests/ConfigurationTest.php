@@ -92,23 +92,6 @@ abstract class ConfigurationTest extends LunrBaseTest
     }
 
     /**
-     * Unit Test Data Provider for non-array values.
-     *
-     * @return array $values Set of non-array values.
-     */
-    public function nonArrayValueProvider(): array
-    {
-        $values   = [];
-        $values[] = [ 'String' ];
-        $values[] = [ 1 ];
-        $values[] = [ NULL ];
-        $values[] = [ FALSE ];
-        $values[] = [ new stdClass() ];
-
-        return $values;
-    }
-
-    /**
      * Unit Test Data Provider for existing $config key->value pairs.
      *
      * @return array $pairs Existing key->value pairs
