@@ -29,25 +29,25 @@ class Configuration implements ArrayAccess, Iterator, Countable
      * Configuration values
      * @var array<int|string,mixed>
      */
-    private $config;
+    private array $config;
 
     /**
      * Position of the array pointer
      * @var int
      */
-    private $position;
+    private int $position;
 
     /**
      * Size of the $config array
      * @var int
      */
-    private $size;
+    private int $size;
 
     /**
      * Whether the cached size is invalid (outdated)
-     * @var boolean
+     * @var bool
      */
-    private $size_invalid;
+    private bool $size_invalid;
 
     /**
      * Constructor.
@@ -89,7 +89,7 @@ class Configuration implements ArrayAccess, Iterator, Countable
      *
      * @return void
      */
-    public function __clone()
+    public function __clone(): void
     {
         foreach ($this->config as $key => $value)
         {
@@ -107,9 +107,9 @@ class Configuration implements ArrayAccess, Iterator, Countable
      *
      * Pretend to be an Array.
      *
-     * @return string $return
+     * @return string
      */
-    public function __toString()
+    public function __toString(): string
     {
         return 'Array';
     }
@@ -148,19 +148,13 @@ class Configuration implements ArrayAccess, Iterator, Countable
      *
      * @param array<int|string,mixed> $array Input array
      *
-     * @return mixed $array A scalar value or an array
+     * @return array<int|string,mixed> An array with sub-arrays converted
      */
-    #[\ReturnTypeWillChange]
-    private function convert_array_to_class($array)
+    private function convert_array_to_class(array $array): array
     {
-        if (!is_array($array))
-        {
-            return $array;
-        }
-
         if (empty($array))
         {
-            return new self([]);
+            return [];
         }
 
         foreach ($array as $key => $value)
@@ -185,9 +179,13 @@ class Configuration implements ArrayAccess, Iterator, Countable
      *
      * @return void
      */
-    public function offsetSet($offset, $value): void
+    public function offsetSet(mixed $offset, mixed $value): void
     {
-        $value = $this->convert_array_to_class($value);
+        if (is_array($value))
+        {
+            $value = $this->convert_array_to_class($value);
+        }
+
         if (is_null($offset))
         {
             $this->config[] = $value;
@@ -209,9 +207,9 @@ class Configuration implements ArrayAccess, Iterator, Countable
      *
      * @param mixed $offset An offset to check for
      *
-     * @return bool $return TRUE on success, FALSE on failure
+     * @return bool TRUE on success, FALSE on failure
      */
-    public function offsetExists($offset): bool
+    public function offsetExists(mixed $offset): bool
     {
         return isset($this->config[$offset]);
     }
@@ -225,7 +223,7 @@ class Configuration implements ArrayAccess, Iterator, Countable
      *
      * @return void
      */
-    public function offsetUnset($offset): void
+    public function offsetUnset(mixed $offset): void
     {
         unset($this->config[$offset]);
         $this->size_invalid = TRUE;
@@ -239,11 +237,10 @@ class Configuration implements ArrayAccess, Iterator, Countable
      *
      * @param mixed $offset The offset to retrieve
      *
-     * @return mixed $return The value of the requested offset or null if
-     *                       it doesn't exist.
+     * @return mixed The value of the requested offset or null if
+     *               it doesn't exist.
      */
-    #[\ReturnTypeWillChange]
-    public function offsetGet($offset)
+    public function offsetGet(mixed $offset): mixed
     {
         return isset($this->config[$offset]) ? $this->config[$offset] : NULL;
     }
@@ -251,7 +248,7 @@ class Configuration implements ArrayAccess, Iterator, Countable
     /**
      * Convert class content to an array.
      *
-     * @return array<int|string,mixed> $data Array of all config values
+     * @return array<int|string,mixed> Array of all config values
      */
     public function toArray(): array
     {
@@ -285,10 +282,9 @@ class Configuration implements ArrayAccess, Iterator, Countable
      *
      * (Inherited from Iterator)
      *
-     * @return mixed $return The current value of the config array
+     * @return mixed The current value of the config array
      */
-    #[\ReturnTypeWillChange]
-    public function current()
+    public function current(): mixed
     {
         return current($this->config);
     }
@@ -298,10 +294,9 @@ class Configuration implements ArrayAccess, Iterator, Countable
      *
      * (Inherited from Iterator)
      *
-     * @return scalar $return Scalar on success, NULL on failure
+     * @return scalar Scalar on success, NULL on failure
      */
-    #[\ReturnTypeWillChange]
-    public function key()
+    public function key(): mixed
     {
         return key($this->config);
     }
@@ -324,7 +319,7 @@ class Configuration implements ArrayAccess, Iterator, Countable
      *
      * (Inherited from Iterator)
      *
-     * @return bool $return TRUE on success, FALSE on failure
+     * @return bool TRUE on success, FALSE on failure
      */
     public function valid(): bool
     {
@@ -342,7 +337,7 @@ class Configuration implements ArrayAccess, Iterator, Countable
      *
      * (Inherited from Countable)
      *
-     * @return int $size Size of the config array
+     * @return int Size of the config array
      */
     public function count(): int
     {

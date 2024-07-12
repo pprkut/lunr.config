@@ -30,20 +30,6 @@ class ConfigurationConvertArrayToClassTest extends ConfigurationTest
     }
 
     /**
-     * Test convert_array_to_class() with non-array input values.
-     *
-     * @param mixed $input Various invalid values
-     *
-     * @dataProvider nonArrayValueProvider
-     * @covers       Lunr\Core\Configuration::convert_array_to_class
-     */
-    public function testConvertArrayToClassWithNonArrayValues($input): void
-    {
-        $method = $this->get_accessible_reflection_method('convert_array_to_class');
-        $this->assertEquals($input, $method->invokeArgs($this->class, [ $input ]));
-    }
-
-    /**
      * Test convert_array_to_class() with an empty array as input.
      *
      * @covers Lunr\Core\Configuration::convert_array_to_class
@@ -53,13 +39,7 @@ class ConfigurationConvertArrayToClassTest extends ConfigurationTest
         $method = $this->get_accessible_reflection_method('convert_array_to_class');
         $output = $method->invokeArgs($this->class, [ [] ]);
 
-        $this->assertInstanceOf('Lunr\Core\Configuration', $output);
-
-        $property = $this->get_accessible_reflection_property('size');
-        $this->assertEquals(0, $property->getValue($output));
-
-        $property = $this->get_accessible_reflection_property('config');
-        $this->assertEmpty($property->getValue($output));
+        $this->assertArrayEmpty($output);
     }
 
     /**
