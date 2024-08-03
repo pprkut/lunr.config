@@ -11,8 +11,6 @@
 
 namespace Lunr\Core\Tests;
 
-use Lunr\Core\Configuration;
-
 /**
  * Basic tests for the Configuration class,
  * when initialized with a non-array value.

@@ -10,8 +10,6 @@
 
 namespace Lunr\Core\Tests;
 
-use Lunr\Core\Configuration;
-
 /**
  * Basic tests for the Configuration class, with
  * empty initialization.

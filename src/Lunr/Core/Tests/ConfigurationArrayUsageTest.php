@@ -10,8 +10,6 @@
 
 namespace Lunr\Core\Tests;
 
-use Lunr\Core\Configuration;
-
 /**
  * This tests the ArrayAccess methods of the Configuration class.
  *

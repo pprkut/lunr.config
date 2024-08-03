@@ -11,8 +11,6 @@
 
 namespace Lunr\Core\Tests;
 
-use Lunr\Core\Configuration;
-
 /**
  * Test for the method convert_array_to_class().
  *

@@ -12,8 +12,6 @@ namespace Lunr\Core\Tests;
 
 use Lunr\Core\Configuration;
 use Lunr\Halo\LunrBaseTest;
-use PHPUnit\Framework\TestCase;
-use ReflectionClass;
 use stdClass;
 
 /**

@@ -13,8 +13,9 @@
 namespace Lunr\Core;
 
 use ArrayAccess;
-use Iterator;
 use Countable;
+use Iterator;
+use ReturnTypeWillChange;
 
 /**
  * Configuration Class
@@ -150,7 +151,7 @@ class Configuration implements ArrayAccess, Iterator, Countable
      *
      * @return mixed $array A scalar value or an array
      */
-    #[\ReturnTypeWillChange]
+    #[ReturnTypeWillChange]
     private function convert_array_to_class($array)
     {
         if (!is_array($array))
@@ -242,7 +243,7 @@ class Configuration implements ArrayAccess, Iterator, Countable
      * @return mixed $return The value of the requested offset or null if
      *                       it doesn't exist.
      */
-    #[\ReturnTypeWillChange]
+    #[ReturnTypeWillChange]
     public function offsetGet($offset)
     {
         return isset($this->config[$offset]) ? $this->config[$offset] : NULL;
@@ -287,7 +288,7 @@ class Configuration implements ArrayAccess, Iterator, Countable
      *
      * @return mixed $return The current value of the config array
      */
-    #[\ReturnTypeWillChange]
+    #[ReturnTypeWillChange]
     public function current()
     {
         return current($this->config);
@@ -300,7 +301,7 @@ class Configuration implements ArrayAccess, Iterator, Countable
      *
      * @return scalar $return Scalar on success, NULL on failure
      */
-    #[\ReturnTypeWillChange]
+    #[ReturnTypeWillChange]
     public function key()
     {
         return key($this->config);
