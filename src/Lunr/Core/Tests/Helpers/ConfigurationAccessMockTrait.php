@@ -11,8 +11,8 @@ namespace Lunr\Core\Tests\Helpers;
 
 use Lunr\Core\Configuration;
 use Mockery;
-use Mockery\MockInterface;
 use Mockery\Adapter\Phpunit\MockeryPHPUnitIntegration;
+use Mockery\MockInterface;
 
 /**
  * This trait contains test methods to mock array access to the Configuration class.

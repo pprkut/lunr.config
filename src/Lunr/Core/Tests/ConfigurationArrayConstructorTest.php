@@ -10,8 +10,6 @@
 
 namespace Lunr\Core\Tests;
 
-use Lunr\Core\Configuration;
-
 /**
  * This tests the Configuration class when providing an
  * non-empty array as input to the constructor.

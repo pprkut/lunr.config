@@ -10,8 +10,6 @@
 
 namespace Lunr\Core\Tests;
 
-use Lunr\Core\Configuration;
-
 /**
  * This tests loading configuration files via the Configuration class.
  *

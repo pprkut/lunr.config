@@ -13,8 +13,8 @@
 namespace Lunr\Core;
 
 use ArrayAccess;
-use Iterator;
 use Countable;
+use Iterator;
 
 /**
  * Configuration Class
