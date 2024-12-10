@@ -128,6 +128,12 @@ class Configuration implements ArrayAccess, Iterator, Countable
 
         include_once 'conf.' . $identifier . '.inc.php';
 
+        /**
+         * Since we're including a config file here, it's conceivable that $config
+         * might not stay an array. Ignore the phpstan check for that.
+         *
+         * @phpstan-ignore function.alreadyNarrowedType
+         */
         if (!is_array($config))
         {
             $config = [];
