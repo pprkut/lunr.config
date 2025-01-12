@@ -49,7 +49,7 @@ class ConfigurationNonArrayConstructorTest extends ConfigurationTest
      */
     public function testSizeInvalidIsFalse(): void
     {
-        $this->assertPropertySame('size_invalid', FALSE);
+        $this->assertPropertySame('sizeInvalid', FALSE);
     }
 
     /**

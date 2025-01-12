@@ -48,7 +48,7 @@ class ConfigurationBaseTest extends ConfigurationTest
      */
     public function testSizeInvalidIsFalse(): void
     {
-        $this->assertPropertyEquals('size_invalid', FALSE);
+        $this->assertPropertyEquals('sizeInvalid', FALSE);
     }
 
     /**

@@ -115,11 +115,11 @@ class ConfigurationLoadFileTest extends ConfigurationTest
      */
     public function testLoadFileInvalidatesSize(): void
     {
-        $this->assertPropertyEquals('size_invalid', FALSE);
+        $this->assertPropertyEquals('sizeInvalid', FALSE);
 
         $this->class->load_file('correct');
 
-        $this->assertPropertyEquals('size_invalid', TRUE);
+        $this->assertPropertyEquals('sizeInvalid', TRUE);
     }
 
 }

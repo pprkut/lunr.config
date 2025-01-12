@@ -88,15 +88,15 @@ class ConfigurationArrayAccessTest extends ConfigurationTest
     }
 
     /**
-     * Test that offsetUnset sets $size_invalid to FALSE.
+     * Test that offsetUnset sets $sizeInvalid to FALSE.
      */
     public function testOffsetUnsetInvalidatesSize(): void
     {
-        $this->assertFalse($this->get_reflection_property_value('size_invalid'));
+        $this->assertFalse($this->get_reflection_property_value('sizeInvalid'));
 
         $this->class->offsetUnset('test1');
 
-        $this->assertTrue($this->get_reflection_property_value('size_invalid'));
+        $this->assertTrue($this->get_reflection_property_value('sizeInvalid'));
     }
 
     /**
@@ -134,15 +134,15 @@ class ConfigurationArrayAccessTest extends ConfigurationTest
     }
 
     /**
-     * Test that offsetSet sets $size_invalid to FALSE.
+     * Test that offsetSet sets $sizeInvalid to FALSE.
      */
     public function testOffsetSetInvalidatesSize(): void
     {
-        $this->assertFalse($this->get_reflection_property_value('size_invalid'));
+        $this->assertFalse($this->get_reflection_property_value('sizeInvalid'));
 
         $this->class->offsetSet('test5', 'Value');
 
-        $this->assertTrue($this->get_reflection_property_value('size_invalid'));
+        $this->assertTrue($this->get_reflection_property_value('sizeInvalid'));
     }
 
 }

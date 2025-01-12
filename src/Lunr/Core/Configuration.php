@@ -47,7 +47,7 @@ class Configuration implements ArrayAccess, Iterator, Countable
      * Whether the cached size is invalid (outdated)
      * @var bool
      */
-    private bool $size_invalid;
+    private bool $sizeInvalid;
 
     /**
      * Whether the object holds top-level config values or not
@@ -79,7 +79,7 @@ class Configuration implements ArrayAccess, Iterator, Countable
 
         $this->config = $bootstrap;
         $this->rewind();
-        $this->size_invalid = TRUE;
+        $this->sizeInvalid  = TRUE;
         $this->isRootConfig = $isRootConfig;
         $this->count();
     }
@@ -92,7 +92,7 @@ class Configuration implements ArrayAccess, Iterator, Countable
         unset($this->config);
         unset($this->position);
         unset($this->size);
-        unset($this->size_invalid);
+        unset($this->sizeInvalid);
     }
 
     /**
@@ -156,8 +156,8 @@ class Configuration implements ArrayAccess, Iterator, Countable
             $config = $this->convert_array_to_class($config);
         }
 
-        $this->config       = $config;
-        $this->size_invalid = TRUE;
+        $this->config      = $config;
+        $this->sizeInvalid = TRUE;
     }
 
     /**
@@ -212,7 +212,7 @@ class Configuration implements ArrayAccess, Iterator, Countable
             $this->config[$offset] = $value;
         }
 
-        $this->size_invalid = TRUE;
+        $this->sizeInvalid = TRUE;
     }
 
     /**
@@ -243,7 +243,7 @@ class Configuration implements ArrayAccess, Iterator, Countable
     public function offsetUnset(mixed $offset): void
     {
         unset($this->config[$offset]);
-        $this->size_invalid = TRUE;
+        $this->sizeInvalid = TRUE;
     }
 
     /**
@@ -358,10 +358,10 @@ class Configuration implements ArrayAccess, Iterator, Countable
      */
     public function count(): int
     {
-        if ($this->size_invalid === TRUE)
+        if ($this->sizeInvalid === TRUE)
         {
-            $this->size         = count($this->config);
-            $this->size_invalid = FALSE;
+            $this->size        = count($this->config);
+            $this->sizeInvalid = FALSE;
         }
 
         return $this->size;
