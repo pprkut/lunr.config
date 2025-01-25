@@ -51,12 +51,15 @@ class Configuration implements ArrayAccess, Iterator, Countable
 
     /**
      * Whether the object holds top-level config values or not
-     *
      * @var bool
-     *
-     * @phpstan-ignore property.onlyWritten
      */
     private readonly bool $isRootConfig;
+
+    /**
+     * Set of keys that we attempted to load a config file for.
+     * @var string[]
+     */
+    private array $loaded;
 
     /**
      * Constructor.
@@ -81,6 +84,7 @@ class Configuration implements ArrayAccess, Iterator, Countable
         $this->rewind();
         $this->sizeInvalid  = TRUE;
         $this->isRootConfig = $isRootConfig;
+        $this->loaded       = [];
         $this->count();
     }
 
@@ -158,6 +162,42 @@ class Configuration implements ArrayAccess, Iterator, Countable
 
         $this->config      = $config;
         $this->sizeInvalid = TRUE;
+
+        $this->loaded[] = $identifier;
+    }
+
+    /**
+     * Attempt to autoload a config file.
+     *
+     * @param mixed $identifier Identifier string for the config file to load.
+     *                          e.g.: For conf.lunr.inc.php the identifier would be 'lunr'
+     *
+     * @return void
+     */
+    private function autoloadFile(mixed $identifier): void
+    {
+        if (!$this->isRootConfig)
+        {
+            return;
+        }
+
+        if (!is_string($identifier))
+        {
+            return;
+        }
+
+        if (isset($this->config[$identifier]) || in_array($identifier, $this->loaded))
+        {
+            return;
+        }
+
+        if (!stream_resolve_include_path('conf.' . $identifier . '.inc.php'))
+        {
+            $this->loaded[] = $identifier;
+            return;
+        }
+
+        $this->load_file($identifier);
     }
 
     /**
@@ -228,6 +268,8 @@ class Configuration implements ArrayAccess, Iterator, Countable
      */
     public function offsetExists(mixed $offset): bool
     {
+        $this->autoloadFile($offset);
+
         return isset($this->config[$offset]);
     }
 
@@ -259,6 +301,8 @@ class Configuration implements ArrayAccess, Iterator, Countable
      */
     public function offsetGet(mixed $offset): mixed
     {
+        $this->autoloadFile($offset);
+
         return $this->config[$offset] ?? NULL;
     }
 

@@ -10,6 +10,8 @@
 
 namespace Lunr\Core\Tests;
 
+use Lunr\Core\Configuration;
+
 /**
  * This tests the ArrayAccess methods of the Configuration class.
  *
@@ -52,6 +54,70 @@ class ConfigurationArrayAccessTest extends ConfigurationTestCase
     }
 
     /**
+     * Test offsetExists() does not autoload for non root config.
+     */
+    public function testOffsetExistsDoesNotAutoloadForNonRootConfig(): void
+    {
+        $subconfig = new Configuration(isRootConfig: FALSE);
+
+        $this->assertFalse($subconfig->offsetExists('autoload'));
+    }
+
+    /**
+     * Test offsetExists() does not autoload for integer array key.
+     */
+    public function testOffsetExistsDoesNotAutoloadForIntegerKey(): void
+    {
+        $this->assertFalse($this->class->offsetExists(0));
+    }
+
+    /**
+     * Test offsetExists() does not autoload for already existing key.
+     */
+    public function testOffsetExistsDoesNotAutoloadForAlreadyLoadedKey(): void
+    {
+        $loaded = $this->get_reflection_property('loaded');
+
+        $this->assertNotContains('test1', $loaded->getValue($this->class));
+
+        $this->assertTrue($this->class->offsetExists('test1'));
+
+        $this->assertNotContains('test1', $loaded->getValue($this->class));
+    }
+
+    /**
+     * Test offsetExists() does not autoload for already tried non-existing value.
+     */
+    public function testOffsetExistsDoesNotAutoloadForAlreadyTriedKey(): void
+    {
+        $loaded = $this->get_reflection_property('loaded');
+
+        $this->assertNotContains('foo', $loaded->getValue($this->class));
+
+        $this->assertFalse($this->class->offsetExists('foo'));
+
+        $this->assertContains('foo', $loaded->getValue($this->class));
+
+        $this->assertFalse($this->class->offsetExists('foo'));
+    }
+
+    /**
+     * Test offsetExists() does not autoload for already loaded value.
+     *
+     * @runInSeparateProcess
+     */
+    public function testOffsetExistsAutoloads(): void
+    {
+        $loaded = $this->get_reflection_property('loaded');
+
+        $this->assertNotContains('autoload', $loaded->getValue($this->class));
+
+        $this->assertTrue($this->class->offsetExists('autoload'));
+
+        $this->assertContains('autoload', $loaded->getValue($this->class));
+    }
+
+    /**
      * Test offsetGet() with non existing values.
      *
      * @param mixed $offset Offset
@@ -73,6 +139,70 @@ class ConfigurationArrayAccessTest extends ConfigurationTestCase
     public function testOffsetGetWithNonExistingOffset(mixed $offset): void
     {
         $this->assertNull($this->class->offsetGet($offset));
+    }
+
+    /**
+     * Test offsetGet() does not autoload for non root config.
+     */
+    public function testOffsetGetDoesNotAutoloadForNonRootConfig(): void
+    {
+        $subconfig = new Configuration(isRootConfig: FALSE);
+
+        $this->assertNull($subconfig->offsetGet('autoload'));
+    }
+
+    /**
+     * Test offsetGet() does not autoload for integer array key.
+     */
+    public function testOffsetGetDoesNotAutoloadForIntegerKey(): void
+    {
+        $this->assertNull($this->class->offsetGet(0));
+    }
+
+    /**
+     * Test offsetGet() does not autoload for already existing key.
+     */
+    public function testOffsetGetDoesNotAutoloadForAlreadyLoadedKey(): void
+    {
+        $loaded = $this->get_reflection_property('loaded');
+
+        $this->assertNotContains('test1', $loaded->getValue($this->class));
+
+        $this->assertSame('String', $this->class->offsetGet('test1'));
+
+        $this->assertNotContains('test1', $loaded->getValue($this->class));
+    }
+
+    /**
+     * Test offsetGet() does not autoload for already tried non-existing value.
+     */
+    public function testOffsetGetDoesNotAutoloadForAlreadyTriedKey(): void
+    {
+        $loaded = $this->get_reflection_property('loaded');
+
+        $this->assertNotContains('foo', $loaded->getValue($this->class));
+
+        $this->assertNull($this->class->offsetGet('foo'));
+
+        $this->assertContains('foo', $loaded->getValue($this->class));
+
+        $this->assertNull($this->class->offsetGet('foo'));
+    }
+
+    /**
+     * Test offsetGet() does not autoload for already loaded value.
+     *
+     * @runInSeparateProcess
+     */
+    public function testOffsetGetAutoloads(): void
+    {
+        $loaded = $this->get_reflection_property('loaded');
+
+        $this->assertNotContains('autoload', $loaded->getValue($this->class));
+
+        $this->assertInstanceOf(Configuration::class, $this->class->offsetGet('autoload'));
+
+        $this->assertContains('autoload', $loaded->getValue($this->class));
     }
 
     /**
