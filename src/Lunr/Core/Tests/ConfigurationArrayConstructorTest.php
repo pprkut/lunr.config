@@ -17,7 +17,7 @@ namespace Lunr\Core\Tests;
  * @depends    Lunr\Core\Tests\ConfigurationConvertArrayToClassTest::testConvertArrayToClassWithMultidimensionalArrayValue
  * @covers     Lunr\Core\Configuration
  */
-class ConfigurationArrayConstructorTest extends ConfigurationTest
+class ConfigurationArrayConstructorTest extends ConfigurationTestCase
 {
 
     /**
@@ -65,12 +65,12 @@ class ConfigurationArrayConstructorTest extends ConfigurationTest
      */
     public function testConfig(): void
     {
-        $output = $this->get_reflection_property_value('config');
+        $output = $this->getReflectionPropertyValue('config');
 
         $this->assertEquals($this->config['test1'], $output['test1']);
         $this->assertInstanceOf('Lunr\Core\Configuration', $output['test2']);
 
-        $property = $this->get_reflection_property('isRootConfig');
+        $property = $this->getReflectionProperty('isRootConfig');
         $this->assertFalse($property->getValue($output['test2']));
     }
 
@@ -159,7 +159,7 @@ class ConfigurationArrayConstructorTest extends ConfigurationTest
     {
         $this->class->next();
 
-        $output = $this->get_reflection_property_value('config');
+        $output = $this->getReflectionPropertyValue('config');
 
         $this->assertEquals($output['test2'], $this->class->current());
     }

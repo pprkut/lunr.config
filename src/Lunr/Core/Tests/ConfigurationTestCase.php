@@ -11,7 +11,7 @@
 namespace Lunr\Core\Tests;
 
 use Lunr\Core\Configuration;
-use Lunr\Halo\LunrBaseTest;
+use Lunr\Halo\LunrBaseTestCase;
 
 /**
  * This class contains common setup routines, providers
@@ -19,7 +19,7 @@ use Lunr\Halo\LunrBaseTest;
  *
  * @covers Lunr\Core\Configuration
  */
-abstract class ConfigurationTest extends LunrBaseTest
+abstract class ConfigurationTestCase extends LunrBaseTestCase
 {
 
     /**

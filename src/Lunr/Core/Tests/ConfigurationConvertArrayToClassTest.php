@@ -16,7 +16,7 @@ namespace Lunr\Core\Tests;
  *
  * @covers     Lunr\Core\Configuration
  */
-class ConfigurationConvertArrayToClassTest extends ConfigurationTest
+class ConfigurationConvertArrayToClassTest extends ConfigurationTestCase
 {
 
     /**
@@ -34,7 +34,7 @@ class ConfigurationConvertArrayToClassTest extends ConfigurationTest
      */
     public function testConvertArrayToClassWithEmptyArrayValue(): void
     {
-        $method = $this->get_reflection_method('convert_array_to_class');
+        $method = $this->getReflectionMethod('convert_array_to_class');
         $output = $method->invokeArgs($this->class, [ [] ]);
 
         $this->assertArrayEmpty($output);
@@ -51,7 +51,7 @@ class ConfigurationConvertArrayToClassTest extends ConfigurationTest
         $input['test']  = 'String';
         $input['test1'] = 1;
 
-        $method = $this->get_reflection_method('convert_array_to_class');
+        $method = $this->getReflectionMethod('convert_array_to_class');
         $output = $method->invokeArgs($this->class, [ $input ]);
 
         $this->assertEquals($input, $output);
@@ -71,20 +71,20 @@ class ConfigurationConvertArrayToClassTest extends ConfigurationTest
         $config['test2']['test3'] = 1;
         $config['test2']['test4'] = FALSE;
 
-        $method = $this->get_reflection_method('convert_array_to_class');
+        $method = $this->getReflectionMethod('convert_array_to_class');
         $output = $method->invokeArgs($this->class, [ $config ]);
 
         $this->assertTrue(is_array($output));
 
         $this->assertInstanceOf('Lunr\Core\Configuration', $output['test2']);
 
-        $property = $this->get_reflection_property('isRootConfig');
+        $property = $this->getReflectionProperty('isRootConfig');
         $this->assertFalse($property->getValue($output['test2']));
 
-        $property = $this->get_reflection_property('size');
+        $property = $this->getReflectionProperty('size');
         $this->assertEquals(2, $property->getValue($output['test2']));
 
-        $property = $this->get_reflection_property('config');
+        $property = $this->getReflectionProperty('config');
         $this->assertEquals($config['test2'], $property->getValue($output['test2']));
     }
 

@@ -16,7 +16,7 @@ namespace Lunr\Core\Tests;
  * @depends    Lunr\Core\Tests\ConfigurationConvertArrayToClassTest::testConvertArrayToClassWithMultidimensionalArrayValue
  * @covers     Lunr\Core\Configuration
  */
-class ConfigurationLoadFileTest extends ConfigurationTest
+class ConfigurationLoadFileTest extends ConfigurationTestCase
 {
 
     /**
@@ -85,11 +85,11 @@ class ConfigurationLoadFileTest extends ConfigurationTest
      */
     public function testLoadInvalidFile(): void
     {
-        $before = $this->get_reflection_property_value('config');
+        $before = $this->getReflectionPropertyValue('config');
 
         $this->class->load_file('not_array');
 
-        $after = $this->get_reflection_property_value('config');
+        $after = $this->getReflectionPropertyValue('config');
 
         $this->assertEquals($before, $after);
     }
@@ -101,11 +101,11 @@ class ConfigurationLoadFileTest extends ConfigurationTest
     {
         $this->expectException('\PHPUnit\Framework\Error\Error');
 
-        $before = $this->get_reflection_property_value('config');
+        $before = $this->getReflectionPropertyValue('config');
 
         $this->class->load_file('not_exists');
 
-        $after = $this->get_reflection_property_value('config');
+        $after = $this->getReflectionPropertyValue('config');
 
         $this->assertEquals($before, $after);
     }

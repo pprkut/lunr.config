@@ -17,7 +17,7 @@ namespace Lunr\Core\Tests;
  *
  * @covers     Lunr\Core\Configuration
  */
-class ConfigurationNonArrayConstructorTest extends ConfigurationTest
+class ConfigurationNonArrayConstructorTest extends ConfigurationTestCase
 {
 
     /**

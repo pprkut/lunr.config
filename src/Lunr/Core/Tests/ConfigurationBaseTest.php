@@ -16,7 +16,7 @@ namespace Lunr\Core\Tests;
  *
  * @covers     Lunr\Core\Configuration
  */
-class ConfigurationBaseTest extends ConfigurationTest
+class ConfigurationBaseTest extends ConfigurationTestCase
 {
 
     /**

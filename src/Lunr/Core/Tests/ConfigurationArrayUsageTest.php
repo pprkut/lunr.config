@@ -15,7 +15,7 @@ namespace Lunr\Core\Tests;
  *
  * @covers     Lunr\Core\Configuration
  */
-class ConfigurationArrayUsageTest extends ConfigurationTest
+class ConfigurationArrayUsageTest extends ConfigurationTestCase
 {
 
     /**
@@ -43,11 +43,11 @@ class ConfigurationArrayUsageTest extends ConfigurationTest
      */
     public function testArrayWriteAccess(): void
     {
-        $this->assertArrayNotHasKey('test4', $this->get_reflection_property_value('config'));
+        $this->assertArrayNotHasKey('test4', $this->getReflectionPropertyValue('config'));
 
         $this->class['test4'] = 'Value';
 
-        $array = $this->get_reflection_property_value('config');
+        $array = $this->getReflectionPropertyValue('config');
 
         $this->assertArrayHasKey('test4', $array);
         $this->assertEquals('Value', $array['test4']);
@@ -97,7 +97,7 @@ class ConfigurationArrayUsageTest extends ConfigurationTest
     {
         $iteration = 0;
 
-        $config = $this->get_reflection_property_value('config');
+        $config = $this->getReflectionPropertyValue('config');
 
         foreach ($this->class as $key => $value)
         {

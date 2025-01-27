@@ -16,7 +16,7 @@ namespace Lunr\Core\Tests;
  * @depends    Lunr\Core\Tests\ConfigurationArrayConstructorTest::testConfig
  * @covers     Lunr\Core\Configuration
  */
-class ConfigurationArrayAccessTest extends ConfigurationTest
+class ConfigurationArrayAccessTest extends ConfigurationTestCase
 {
 
     /**
@@ -80,11 +80,11 @@ class ConfigurationArrayAccessTest extends ConfigurationTest
      */
     public function testOffsetUnsetDoesUnset(): void
     {
-        $this->assertArrayHasKey('test1', $this->get_reflection_property_value('config'));
+        $this->assertArrayHasKey('test1', $this->getReflectionPropertyValue('config'));
 
         $this->class->offsetUnset('test1');
 
-        $this->assertArrayNotHasKey('test1', $this->get_reflection_property_value('config'));
+        $this->assertArrayNotHasKey('test1', $this->getReflectionPropertyValue('config'));
     }
 
     /**
@@ -92,11 +92,11 @@ class ConfigurationArrayAccessTest extends ConfigurationTest
      */
     public function testOffsetUnsetInvalidatesSize(): void
     {
-        $this->assertFalse($this->get_reflection_property_value('sizeInvalid'));
+        $this->assertFalse($this->getReflectionPropertyValue('sizeInvalid'));
 
         $this->class->offsetUnset('test1');
 
-        $this->assertTrue($this->get_reflection_property_value('sizeInvalid'));
+        $this->assertTrue($this->getReflectionPropertyValue('sizeInvalid'));
     }
 
     /**
@@ -106,11 +106,11 @@ class ConfigurationArrayAccessTest extends ConfigurationTest
      */
     public function testOffsetSetWithGivenOffset(): void
     {
-        $this->assertArrayNotHasKey('test4', $this->get_reflection_property_value('config'));
+        $this->assertArrayNotHasKey('test4', $this->getReflectionPropertyValue('config'));
 
         $this->class->offsetSet('test4', 'Value');
 
-        $value = $this->get_reflection_property_value('config');
+        $value = $this->getReflectionPropertyValue('config');
 
         $this->assertArrayHasKey('test1', $value);
         $this->assertEquals('Value', $value['test4']);
@@ -123,11 +123,11 @@ class ConfigurationArrayAccessTest extends ConfigurationTest
      */
     public function testOffsetSetWithNullOffset(): void
     {
-        $this->assertArrayNotHasKey(0, $this->get_reflection_property_value('config'));
+        $this->assertArrayNotHasKey(0, $this->getReflectionPropertyValue('config'));
 
         $this->class->offsetSet(NULL, 'Value');
 
-        $value = $this->get_reflection_property_value('config');
+        $value = $this->getReflectionPropertyValue('config');
 
         $this->assertArrayHasKey(0, $value);
         $this->assertEquals('Value', $value[0]);
@@ -138,11 +138,11 @@ class ConfigurationArrayAccessTest extends ConfigurationTest
      */
     public function testOffsetSetInvalidatesSize(): void
     {
-        $this->assertFalse($this->get_reflection_property_value('sizeInvalid'));
+        $this->assertFalse($this->getReflectionPropertyValue('sizeInvalid'));
 
         $this->class->offsetSet('test5', 'Value');
 
-        $this->assertTrue($this->get_reflection_property_value('sizeInvalid'));
+        $this->assertTrue($this->getReflectionPropertyValue('sizeInvalid'));
     }
 
 }
