@@ -93,7 +93,7 @@ abstract class ConfigurationTestCase extends LunrBaseTestCase
      *
      * @return array $pairs Existing key->value pairs
      */
-    public function existingConfigPairProvider(): array
+    public static function existingConfigPairProvider(): array
     {
         $pairs   = [];
         $pairs[] = [ 'test1', 'String' ];
@@ -106,7 +106,7 @@ abstract class ConfigurationTestCase extends LunrBaseTestCase
      *
      * @return array $pairs Not existing key->value pairs
      */
-    public function nonExistingConfigPairProvider(): array
+    public static function nonExistingConfigPairProvider(): array
     {
         $pairs   = [];
         $pairs[] = [ 'test4', 'Value' ];

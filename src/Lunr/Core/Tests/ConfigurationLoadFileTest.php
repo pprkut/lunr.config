@@ -30,6 +30,8 @@ class ConfigurationLoadFileTest extends ConfigurationTestCase
     /**
      * Test loading a correct config file.
      *
+     * @runInSeparateProcess
+     *
      * @depends Lunr\Core\Tests\ConfigurationArrayConstructorTest::testToArrayEqualsInput
      */
     public function testLoadCorrectFile(): void
@@ -99,7 +101,11 @@ class ConfigurationLoadFileTest extends ConfigurationTestCase
      */
     public function testLoadNonExistingFile(): void
     {
-        $this->expectException('\PHPUnit\Framework\Error\Error');
+        $warning  = "include_once(conf.not_exists.inc.php): Failed to open stream: No such file or directory\n";
+        $warning .= "WARNING: include_once(): Failed opening 'conf.not_exists.inc.php' for inclusion";
+        $warning .= " (include_path='" . get_include_path() . "')";
+
+        $this->expectWarning($warning);
 
         $before = $this->getReflectionPropertyValue('config');
 
