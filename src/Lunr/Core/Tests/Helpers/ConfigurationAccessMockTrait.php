@@ -26,7 +26,7 @@ trait ConfigurationAccessMockTrait
      * Mock instance of the Configuration class.
      * @var Configuration&MockInterface
      */
-    protected $config;
+    protected Configuration&MockInterface $config;
 
     /**
      * Expect access to the Configuration class based on given array structure.
@@ -35,7 +35,7 @@ trait ConfigurationAccessMockTrait
      *
      * @return void
      */
-    private function expectConfigurationAccess(array $config): void
+    protected function expectConfigurationAccess(array $config): void
     {
         foreach ($config as $key => $value)
         {
