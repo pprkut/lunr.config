@@ -108,10 +108,12 @@ class Configuration implements ArrayAccess, Iterator, Countable
     {
         foreach ($this->config as $key => $value)
         {
-            if ($value instanceof self)
+            if (!($value instanceof self))
             {
-                $this[$key] = clone $value;
+                continue;
             }
+
+            $this[$key] = clone $value;
         }
 
         $this->count();
@@ -216,10 +218,12 @@ class Configuration implements ArrayAccess, Iterator, Countable
 
         foreach ($array as $key => $value)
         {
-            if (is_array($value))
+            if (!is_array($value))
             {
-                $array[$key] = new self($value, isRootConfig: FALSE);
+                continue;
             }
+
+            $array[$key] = new self($value, isRootConfig: FALSE);
         }
 
         return $array;
@@ -316,10 +320,12 @@ class Configuration implements ArrayAccess, Iterator, Countable
         $data = $this->config;
         foreach ($data as $key => $value)
         {
-            if ($value instanceof self)
+            if (!($value instanceof self))
             {
-                $data[$key] = $value->toArray();
+                continue;
             }
+
+            $data[$key] = $value->toArray();
         }
 
         return $data;
