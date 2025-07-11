@@ -8,6 +8,7 @@
  * SPDX-License-Identifier: MIT
  */
 
+// phpcs:ignore SlevomatCodingStandard.Variables.UnusedVariable
 $config = 100;
 
 ?>

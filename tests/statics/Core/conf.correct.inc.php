@@ -8,7 +8,7 @@
  * SPDX-License-Identifier: MIT
  */
 
-$config['load'] = array();
+$config['load'] = [];
 
 $config['load']['one'] = 'Value';
 $config['load']['two'] = 'String';
