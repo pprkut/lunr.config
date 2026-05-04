@@ -179,7 +179,7 @@ class Configuration implements ArrayAccess, Iterator, Countable
             && $this->config[$identifier] instanceof self
         )
         {
-            $config[$identifier] = array_replace_recursive($this->config[$identifier]->toArray(), $this->environmentOverride[$identifier]);
+            $config[$identifier] = $this->caseInsensitiveMerge($this->config[$identifier]->toArray(), $this->environmentOverride[$identifier]);
         }
         else
         {
@@ -298,6 +298,44 @@ class Configuration implements ArrayAccess, Iterator, Countable
         }
 
         $this->environmentOverride = $envConfig;
+    }
+
+    /**
+     * Recursively merge override values into an existing array, matching keys case-insensitively.
+     *
+     * Environment variable names are lowercased, so override keys may not match the case of
+     * existing config keys (e.g. 'rwhost' vs 'rwHost'). This method preserves the existing
+     * key casing while applying the override values.
+     *
+     * @param array<int|string,mixed> $existing The existing config array
+     * @param array<int|string,mixed> $override The override values to merge in
+     *
+     * @return array<int|string,mixed> The merged array
+     */
+    private function caseInsensitiveMerge(array $existing, array $override): array
+    {
+        $keyMap = [];
+        foreach (array_keys($existing) as $key)
+        {
+            $keyMap[strtolower((string) $key)] = $key;
+        }
+
+        foreach ($override as $key => $value)
+        {
+            $lowerKey  = strtolower((string) $key);
+            $targetKey = $keyMap[$lowerKey] ?? $key;
+
+            if (is_array($value) && isset($existing[$targetKey]) && is_array($existing[$targetKey]))
+            {
+                $existing[$targetKey] = $this->caseInsensitiveMerge($existing[$targetKey], $value);
+            }
+            else
+            {
+                $existing[$targetKey] = $value;
+            }
+        }
+
+        return $existing;
     }
 
     /**

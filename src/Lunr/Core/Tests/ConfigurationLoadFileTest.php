@@ -165,6 +165,35 @@ class ConfigurationLoadFileTest extends ConfigurationTestCase
     }
 
     /**
+     * Test loading a config file with environment overrides for camelCase keys.
+     *
+     * @runInSeparateProcess
+     *
+     * @depends Lunr\Core\Tests\ConfigurationArrayConstructorTest::testToArrayEqualsInput
+     * @covers  Lunr\Core\Configuration::loadFile
+     */
+    public function testLoadFileWithEnvironmentOverridesForCamelCaseKeys(): void
+    {
+        $override['camelcase']['rwhost'] = 'overridden';
+        $override['camelcase']['rohost'] = 'overridden';
+
+        $this->setReflectionPropertyValue('environmentOverride', $override);
+
+        $this->class->loadFile('camelcase');
+
+        $config                           = [];
+        $config['test1']                  = 'String';
+        $config['test2']                  = [];
+        $config['test2']['test3']         = 1;
+        $config['test2']['test4']         = FALSE;
+        $config['camelcase']['rwHost']    = 'overridden';
+        $config['camelcase']['roHost']    = 'overridden';
+        $config['camelcase']['simplekey'] = 'original';
+
+        $this->assertEquals($config, $this->class->toArray());
+    }
+
+    /**
      * Test loading an invalid config file.
      *
      * @covers Lunr\Core\Configuration::loadFile
